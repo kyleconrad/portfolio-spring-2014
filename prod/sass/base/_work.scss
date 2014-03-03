@@ -1,0 +1,33 @@
+/* WORK */
+#tesla {
+	background: $tesla;
+
+	.hero-image {
+		background-color: $tesla;
+		background-image: url('../img/tesla/hero.jpg');
+
+		&:after {
+			@include background-image(linear-gradient(transparent, $tesla));
+		}
+	}
+}
+
+#giffffr {
+	background: $giffffr;
+
+	.hero-image {
+		background-color: $giffffr;
+
+		&:after {
+
+		}
+	}
+}
+
+#jquery {
+
+}
+
+#sketchbook {
+
+}

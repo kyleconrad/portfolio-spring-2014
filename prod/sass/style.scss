@@ -4,6 +4,11 @@
 @charset "utf-8";
 
 $experimental-support-for-khtml: false;
+$experimental-support-for-svg: true;
+$legacy-support-for-ie: false;
+$legacy-support-for-ie8: false;
+$legacy-support-for-mozilla: false;
+
 @import "compass/reset";
 @import "compass/css3";
 @import "compass/typography";
@@ -34,6 +39,15 @@ $experimental-support-for-khtml: false;
   #{$property}: -webkit-calc(#{$expression});
   #{$property}: calc(#{$expression});
 }
+
+
+$green: #17f900;
+$dark: lighten(black,10%);
+
+
+$tesla: #f10600;
+$giffffr: #ff007f;
+
 
 
 /* ADDITIONAL RESET */
@@ -108,4 +122,5 @@ body {
 @import 'base/_nav.scss';
 @import 'base/_header.scss';
 @import 'base/_main.scss';
+@import 'base/_work.scss';
 @import 'base/_footer.scss';

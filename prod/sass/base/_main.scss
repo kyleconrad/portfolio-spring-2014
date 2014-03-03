@@ -1,1 +1,21 @@
 /* MAIN AREAS */
+.work-block {
+	padding-bottom: 5.5rem;
+}
+
+.work-content {
+	z-index: 5;
+	margin-top: -13rem;
+}
+
+.work-info,
+.work-description {
+	float: left;
+}
+.work-info {
+	width: 40%;
+}
+.work-description {
+	width: 60%;
+	padding-bottom: 4rem;
+}
