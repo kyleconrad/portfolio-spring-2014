@@ -10,6 +10,7 @@
 
 h1,
 h2,
+.big-button,
 .work-detail,
 .work-person {
 	font-family: "futura-pt", sans-serif;
@@ -36,6 +37,24 @@ p {
 	line-height: 1.4;
 }
 
+.big-button {
+	text-decoration: none;
+	text-transform: uppercase;
+	color: white;
+	display: inline-block;
+	text-align: center;
+	border: 2px solid white;
+	font-size: 0.75rem;
+	margin-top: 2.5rem;
+	width: 100%;
+	letter-spacing: 0.5em;
+	padding: 1.65em 0.65em 1.65em 1em;
+
+	&:hover {
+		background: white;
+	}
+}
+
 .work-detail {
 	font-size: 0.875rem;
 	text-transform: uppercase;
@@ -44,7 +63,7 @@ p {
 	padding-bottom: 0.35em;
 }
 .work-person {
-	font-weight: 400;
+	letter-spacing: 0.075em;
 	font-size: 0.675rem;
 	text-transform: uppercase;
 	display: block;
