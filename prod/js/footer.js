@@ -14,7 +14,7 @@ $(document).ready(function() {
 	$('.lazy').show().lazyload({
 		effect: 'fadeIn',
 		skip_invisible: false,
-		placeholder: 'img/trans.png',
+		//placeholder: 'img/trans.png',
 		threshold: (windowHeight / 2)
 	});
 });

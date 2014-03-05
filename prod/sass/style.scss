@@ -41,16 +41,7 @@ $legacy-support-for-mozilla: false;
 }
 
 
-$green: #17f900;
 $dark: lighten(black,10%);
-
-
-$tesla: #f10600;
-$giffffr: #ff007f;
-$sketchbook: #0c1e27;
-$awesomethings: #a9a9a9;
-$jquery: #0769AD;
-$renaissance: #f89d31;
 
 
 
@@ -121,7 +112,6 @@ body {
 @import 'base/_glyphs.scss';
 @import 'base/_text.scss';
 @import 'base/_images.scss';
-@import 'base/_canvas.scss';
 
 @import 'base/_nav.scss';
 @import 'base/_header.scss';

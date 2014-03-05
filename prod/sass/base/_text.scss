@@ -12,7 +12,8 @@ h1,
 h2,
 .big-button,
 .work-detail,
-.work-person {
+.work-person,
+.caption {
 	font-family: "futura-pt", sans-serif;
 	font-weight: 700;
 	-webkit-font-smoothing: antialiased;
@@ -34,7 +35,7 @@ h2 {
 p {
 	color: white;
 	font-size: 1.2rem;
-	line-height: 1.4;
+	line-height: 1.5;
 }
 
 .big-button {
@@ -86,4 +87,11 @@ p {
 	margin-left: 1em;
 	margin-right: 1em;
 	font-weight: 400;
+}
+
+.caption {
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	color: white;
+	letter-spacing: 0.025em;
 }

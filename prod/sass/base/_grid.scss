@@ -9,9 +9,45 @@ header {
 	position: relative;
 	margin: 0;
 	padding: 0;
+	width: 100%;
 }
 
 .column {
 	width: 80%;
 	margin: 0 auto;
+	max-width: 1350px;
+}
+
+
+
+.full,
+.half {
+	margin-bottom: 1.5rem;
+}
+
+.full {
+	clear: both;
+	width: 100%;
+}
+
+.half {
+	float: left;
+	margin-right: 1.5rem;
+	@include calc(width, "50% - 0.75rem");
+}
+
+.third {
+	float: left;
+	margin-right: 1.5rem;
+	@include calc(width, "(100% / 3) - 0.75rem");
+}
+
+.two-third {
+	float: left;
+	margin-right: 1.5rem;
+	@include calc(width, "((100% / 3) * 2) - 0.75rem");
+}
+
+.row-last {
+	margin-right: 0;
 }

@@ -3,25 +3,8 @@ img {
 	display: block;
 	width: 100%;
 	height: auto;
-	@include backface-visibility(hidden);
+	@include transform(translate3d(0,0,0));
 
-	&.full,
-	&.half {
-		margin-bottom: 1.5rem;
-	}
-	&.full {
-		clear: both;
-		width: 100%;
-	}
-	&.half {
-		float: left;
-		margin-right: 1.5rem;
-		@include calc(width, "50% - 0.75rem");
-
-		&:nth-child(2n) {
-			margin-right: 0;
-		}
-	}
 	&.bordered {
 		border: 1px solid rgba(black,0.25);
 	}
