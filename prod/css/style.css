@@ -187,7 +187,8 @@ h2 {
   font-size: 3.75rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   padding-bottom: 1rem;
-  margin-bottom: 1.5rem; }
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.025em; }
 
 p {
   color: white;
@@ -241,7 +242,8 @@ p {
   font-size: 0.75rem;
   text-transform: uppercase;
   color: white;
-  letter-spacing: 0.025em; }
+  letter-spacing: 0.025em;
+  display: block; }
 
 /* IMAGES */
 img {
