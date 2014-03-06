@@ -6,7 +6,7 @@ img {
 	@include transform(translate3d(0,0,0));
 
 	&.bordered {
-		border: 1px solid rgba(black,0.25);
+		border: 1px solid rgba(black,0.15);
 	}
 
 	&.lazy {
