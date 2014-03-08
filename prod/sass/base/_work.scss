@@ -5,6 +5,7 @@ $sketchbook: #0c1e27;
 $awesomethings: #a9a9a9;
 $jquery: #0769AD;
 $renaissance: #f89d31;
+$mfstrangers: #8e44ad;
 
 
 
@@ -12,7 +13,7 @@ $renaissance: #f89d31;
 	background: $tesla;
 
 	.hero-image {
-		background-image: url('../img/tesla/hero.jpg');
+		background-image: image-url('tesla/hero.jpg');
 
 		&:after {
 			@include background-image(linear-gradient(transparent, $tesla));
@@ -25,7 +26,7 @@ $renaissance: #f89d31;
 	background: $giffffr;
 
 	.hero-image {
-		background-image: url('../img/giffffr/hero.gif'), url('../img/giffffr/hero.jpg');
+		background-image: image-url('giffffr/hero.gif'), image-url('giffffr/hero.jpg');
 		background-size: cover, cover;
 		background-position: center bottom, center bottom;
 
@@ -46,7 +47,7 @@ $renaissance: #f89d31;
 	background: $sketchbook;
 
 	.hero-image {
-		background-image: url('../img/sketchbook/hero.jpg');
+		background-image: image-url('sketchbook/hero.jpg');
 
 		&:after {
 			@include background-image(linear-gradient(transparent, $sketchbook));
@@ -65,7 +66,7 @@ $renaissance: #f89d31;
 	background: $awesomethings;
 
 	.hero-image {
-		background-image: url('../img/awesomethings/hero.jpg');
+		background-image: image-url('awesomethings/hero.jpg');
 
 		&:after {
 			@include background-image(linear-gradient(transparent, $awesomethings));
@@ -84,7 +85,7 @@ $renaissance: #f89d31;
 	background: $jquery;
 
 	.hero-image {
-		background-image: url('../img/jquery/hero.jpg');
+		background-image: image-url('jquery/hero.jpg');
 
 		&:after {
 			@include background-image(linear-gradient(transparent, $jquery));
@@ -97,10 +98,28 @@ $renaissance: #f89d31;
 	background: $renaissance;
 
 	.hero-image {
-		background-image: url('../img/renaissance/hero.jpg');
+		background-image: image-url('renaissance/hero.jpg');
 
 		&:after {
 			@include background-image(linear-gradient(transparent, $renaissance));
+		}
+	}
+}
+
+
+#mfstrangers {
+	background: $mfstrangers;
+
+	.hero-image {
+
+		&:after {
+			@include background-image(linear-gradient(transparent, $mfstrangers));
+		}
+	}
+
+	.big-button {
+		&:hover {
+			color: $mfstrangers;
 		}
 	}
 }

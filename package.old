@@ -1,7 +1,7 @@
 {
   "name": "PortfolioSpring2014",
   "version": "0.0.1",
-  "description": "Kyle Conrad's portfolio redesign for Spring 2014.",
+  "description": "Portfolio redesign for Spring 2014.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,8 +17,8 @@
     "tiny-lr": "0.0.5",
     "connect-livereload": "~0.3.2",
     "gulp-open": "~0.2.8",
-    "gulp-concat": "~2.1.7",
-    "gulp-compass": "^1.1.4"
+    "gulp-ruby-sass": "~0.3.1",
+    "gulp-concat": "~2.1.7"
   },
   "dependencies": {
     "gulp-minify-css": "~0.3.0",

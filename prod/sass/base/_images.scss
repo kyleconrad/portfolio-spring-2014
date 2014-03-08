@@ -3,7 +3,8 @@ img {
 	display: block;
 	width: 100%;
 	height: auto;
-	@include transform(translate3d(0,0,0));
+	border: 0;
+	outline: none;
 
 	&.bordered {
 		border: 1px solid rgba(black,0.15);
