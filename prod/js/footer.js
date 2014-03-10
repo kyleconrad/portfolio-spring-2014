@@ -3,12 +3,14 @@ $(document).ready(function() {
 		windowHeight = $(window).height();
 	var isMobile = navigator.userAgent.match(/mobile/i);
 
+
 	// WIDOW CONTROL
 	if (windowWidth > 640) {
 		$('h1, h2, h3, li, p, figcaption').each(function() {
 		    $(this).html($(this).html().replace(/\s((?=(([^\s<>]|<[^>]*>)+))\2)\s*$/,'&nbsp;$1'));
 		});
 	}
+
 
 	// LAZY LOADING
 	$('.lazy').show().lazyload({
@@ -17,4 +19,8 @@ $(document).ready(function() {
 		//placeholder: 'img/trans.png',
 		threshold: (windowHeight / 2)
 	});
+
+
+	// RESPONSIVE VIDEOS
+	$('.full').fitVids();
 });

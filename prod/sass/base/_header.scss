@@ -1,7 +1,7 @@
 /* HEADER */
 #page-hero {
-	padding-top: 44vh;
-	padding-bottom: 46vh;
+	padding-top: 45vh;
+	padding-bottom: 47vh;
 }
 
 .hero-image {
@@ -21,5 +21,9 @@
 		z-index: 2;
 		display: block;
 		content: "";
+	}
+
+	@include breakpoint(large) {
+		height: 36rem;
 	}
 }

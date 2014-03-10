@@ -8,13 +8,20 @@
 	margin-top: -13rem;
 }
 
-.work-info,
-.work-description {
-	float: left;
-}
 .work-info {
 	width: 40%;
 	padding-right: 11%;
+
+	@include breakpoint(portrait) {
+		padding-right: 8%;
+	}
+	@include breakpoint(mobile) {
+		padding-bottom: 2rem;
+
+		.big-button {
+			display: none;
+		}
+	}
 }
 .work-description {
 	width: 60%;
@@ -22,5 +29,35 @@
 
 	.big-button {
 		display: none;
+
+		@include breakpoint(mobile) {
+			display: block;
+		}
+	}
+}
+
+.work-info,
+.work-description {
+	float: left;
+
+	@include breakpoint(mobile) {
+		float: none;
+		width: 100%;
+	}
+}
+
+
+#about {
+	padding: 6rem 0;
+
+	&:before {
+		position: absolute;
+		top: -1px;
+		left: 0;
+		width: 100%;
+		background: rgba(black,0.2);
+		display: block;
+		height: 1px;
+		content: "";
 	}
 }

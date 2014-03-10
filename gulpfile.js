@@ -140,7 +140,6 @@ gulp.task('build', [
 	gulp.run(
 		'sass',
 		'minify',
-		'html',
 		'uglify',
 		'imagemin'
 	);

@@ -16,12 +16,24 @@ header {
 	width: 80%;
 	margin: 0 auto;
 	max-width: 1350px;
+
+	@include breakpoint(landscape) {
+		width: 84%;
+	}
+	@include breakpoint(portrait) {
+		width: 86%;
+	}
+	@include breakpoint(mobile) {
+		width: 90%;
+	}
 }
 
 
 
 .full,
-.half {
+.half,
+.third,
+.two-third {
 	margin-bottom: 1.5rem;
 }
 
@@ -31,21 +43,27 @@ header {
 }
 
 .half {
-	float: left;
-	margin-right: 1.5rem;
 	@include calc(width, "50% - 0.75rem");
 }
 
 .third {
-	float: left;
-	margin-right: 1.5rem;
-	@include calc(width, "(100% / 3) - 0.75rem");
+	@include calc(width, "(100% / 3) - 1rem");
 }
 
 .two-third {
+	@include calc(width, "((100% / 3) * 2) - 0.75rem");
+}
+
+.half,
+.third,
+.two-third {
 	float: left;
 	margin-right: 1.5rem;
-	@include calc(width, "((100% / 3) * 2) - 0.75rem");
+
+	@include breakpoint(mobile) {
+		width: 100%;
+		margin-right: 0;
+	}
 }
 
 .row-last {

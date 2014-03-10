@@ -50,6 +50,16 @@ html {
 	min-height: 100%;
 	height: 100%;
 	-webkit-text-size-adjust: none;
+
+	@include breakpoint(landscape) {
+		font-size: 95%;
+	}
+	@include breakpoint(portrait) {
+		font-size: 86%;
+	}
+	@include breakpoint(mobile) {
+		font-size: 83%;
+	}
 }
 body {
 	height: 100%;

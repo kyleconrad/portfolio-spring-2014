@@ -111,6 +111,8 @@ $mfstrangers: #8e44ad;
 	background: $mfstrangers;
 
 	.hero-image {
+		background-image: image-url('mfstrangers/hero.jpg');
+		background-position: center center;
 
 		&:after {
 			@include background-image(linear-gradient(transparent, $mfstrangers));
@@ -126,7 +128,6 @@ $mfstrangers: #8e44ad;
 
 
 // HALLOWEEN
-// MISTAKEN FOR STRANGERS
 // METRO HOT CARS
 // VOLKSWAGEN CREDIT
 // .NYC DOMAIN
