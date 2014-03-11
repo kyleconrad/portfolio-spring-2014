@@ -402,6 +402,24 @@ img.lazy {
   padding-top: 44vh;
   padding-bottom: 48vh;
 }
+@media only screen and (min-width: 802px) and (max-width: 1025px) {
+  #page-hero {
+    padding-top: 19rem;
+    padding-bottom: 23rem;
+  }
+}
+@media only screen and (min-width: 642px) and (max-width: 801px) {
+  #page-hero {
+    padding-top: 30rem;
+    padding-bottom: 34rem;
+  }
+}
+@media only screen and (max-width: 641px) {
+  #page-hero {
+    padding-top: 14rem;
+    padding-bottom: 18rem;
+  }
+}
 
 .hero-image {
   background-size: cover;
