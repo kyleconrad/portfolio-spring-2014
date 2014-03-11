@@ -6,6 +6,7 @@ $awesomethings: #a9a9a9;
 $jquery: #0769AD;
 $renaissance: #f89d31;
 $mfstrangers: #8e44ad;
+$hotcars: #0076be;
 
 
 
@@ -136,6 +137,25 @@ $mfstrangers: #8e44ad;
 	.big-button {
 		&:hover {
 			color: $mfstrangers;
+		}
+	}
+}
+
+
+#hotcars {
+	background: $hotcars;
+
+	.hero-image {
+		background-image: image-url('hotcars/hero.jpg');
+
+		&:after {
+			@include background-image(linear-gradient(transparent, $hotcars));
+		}
+	}
+
+	.big-button {
+		&:hover {
+			color: $hotcars;
 		}
 	}
 }
