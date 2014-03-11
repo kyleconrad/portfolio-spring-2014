@@ -17,7 +17,7 @@ $(document).ready(function() {
 		effect: 'fadeIn',
 		skip_invisible: false,
 		//placeholder: 'img/trans.png',
-		threshold: (windowHeight / 2)
+		threshold: windowHeight
 	});
 
 

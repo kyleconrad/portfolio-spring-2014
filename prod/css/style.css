@@ -437,7 +437,7 @@ img.padded {
   left: 0;
   right: 0;
   width: 100%;
-  height: 70%;
+  height: 80%;
   z-index: 2;
   display: block;
   content: "";
@@ -677,7 +677,7 @@ img.padded {
 /* FOOTER */
 footer {
   background: #f2f2f2;
-  padding: 2rem 0;
+  padding: 2rem 0 3rem;
 }
 footer li {
   display: block;
