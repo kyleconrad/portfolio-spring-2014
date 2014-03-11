@@ -50,9 +50,15 @@ p {
 
 	#about & {
 		color: $dark;
-		width: 60%;
+		width: 55%;
+		max-width: 700px;
+		margin: 0 auto;
 		margin-bottom: 1em;
-		font-size: 1rem;
+		font-size: 1.1rem;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	a {

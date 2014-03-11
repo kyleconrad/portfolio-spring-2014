@@ -283,9 +283,14 @@ p {
 }
 #about p {
   color: #1a1a1a;
-  width: 60%;
+  width: 55%;
+  max-width: 700px;
+  margin: 0 auto;
   margin-bottom: 1em;
-  font-size: 1rem;
+  font-size: 1.1rem;
+}
+#about p:last-child {
+  margin-bottom: 0;
 }
 p a {
   color: #1a1a1a;
@@ -394,8 +399,8 @@ img.lazy {
 /* NAV BAR */
 /* HEADER */
 #page-hero {
-  padding-top: 45vh;
-  padding-bottom: 47vh;
+  padding-top: 44vh;
+  padding-bottom: 48vh;
 }
 
 .hero-image {
@@ -476,7 +481,7 @@ img.lazy {
 }
 
 #about {
-  padding: 6rem 0;
+  padding: 6rem 0 7rem;
 }
 #about:before {
   position: absolute;
@@ -490,6 +495,18 @@ img.lazy {
 }
 
 /* WORK */
+.browser {
+  width: 100%;
+  height: 34px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  background-image: url('../img/browser-btn.png?1394496611'), url('../img/browser-chrome.png?1394496630');
+  background-repeat: no-repeat, repeat-x;
+  background-size: auto 100%;
+  background-position: left center;
+  border-radius: 5px 5px 0 0;
+  z-index: 10;
+}
+
 #tesla {
   background: #f10600;
 }
