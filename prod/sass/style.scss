@@ -55,10 +55,10 @@ html {
 		font-size: 95%;
 	}
 	@include breakpoint(portrait) {
-		font-size: 86%;
+		font-size: 85%;
 	}
 	@include breakpoint(mobile) {
-		font-size: 83%;
+		font-size: 85%;
 	}
 }
 body {

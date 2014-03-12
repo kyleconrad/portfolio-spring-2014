@@ -14,7 +14,7 @@ $(document).ready(function() {
 
 	// LAZY LOADING
 	$('.lazy').show().lazyload({
-		effect: 'fadeIn',
+		//effect: 'fadeIn',
 		skip_invisible: false,
 		//placeholder: 'img/trans.png',
 		threshold: windowHeight

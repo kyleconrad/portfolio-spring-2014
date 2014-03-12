@@ -138,6 +138,7 @@ gulp.task('build', [
 		'remove'
 	], function(){
 	gulp.run(
+		'html',
 		'sass',
 		'minify',
 		'uglify',

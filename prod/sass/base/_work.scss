@@ -20,6 +20,17 @@ $hotcars: #0076be;
 	background-position: left center;
 	border-radius: 5px 5px 0 0;
 	z-index: 10;
+
+	@include breakpoint(landscape) {
+		height: 28px;
+	}
+	@include breakpoint(portrait) {
+		height: 24px;
+	}
+	@include breakpoint(mobile) {
+		height: 18px;
+		border-radius: 3px 3px 0 0;
+	}
 }
 
 
