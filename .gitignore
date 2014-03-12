@@ -1,5 +1,6 @@
 node_modules
 concepts
+dist
 
 .sass-cache
 .sass-cache/**/*

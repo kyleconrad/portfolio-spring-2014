@@ -41,6 +41,10 @@ $hotcars: #0076be;
 	.hero-image {
 		background-image: image-url('tesla/hero.jpg');
 
+		@include breakpoint(mobile) {
+			background-position: 17% top;
+		}
+
 		&:after {
 			@include background-image(linear-gradient(transparent, $tesla));
 		}
@@ -94,6 +98,10 @@ $hotcars: #0076be;
 	.hero-image {
 		background-image: image-url('awesomethings/hero.jpg');
 
+		@include breakpoint(mobile) {
+			background-position: 35% top;
+		}
+
 		&:after {
 			@include background-image(linear-gradient(transparent, $awesomethings));
 		}
@@ -125,6 +133,10 @@ $hotcars: #0076be;
 
 	.hero-image {
 		background-image: image-url('renaissance/hero.jpg');
+
+		@include breakpoint(mobile) {
+			background-position: 25% top;
+		}
 
 		&:after {
 			@include background-image(linear-gradient(transparent, $renaissance));
