@@ -15,6 +15,17 @@
 		padding-top: 14rem;
 		padding-bottom: 18rem;
 	}
+
+
+	.hero-logo {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 10rem;
+		height: 12rem;
+		vertical-align: middle;
+		@include transform(translate(-50%,-55%));
+	}
 }
 
 .hero-image {
