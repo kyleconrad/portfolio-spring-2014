@@ -9,7 +9,7 @@ var gulp = require('gulp'),
 	// Other plugins
 	open = require('gulp-open'),
 	concat = require('gulp-concat'),
-	sass = require('gulp-ruby-sass'),
+	sass = require('gulp-compass'),
 	rimraf = require('gulp-rimraf'),
 	minify = require('gulp-minify-css'),
 	htmlbuild = require('gulp-htmlbuild'),
@@ -44,16 +44,17 @@ gulp.task('serve', function() {
 
 
 // SASS compiling & reloading
-gulp.task('sass', function () {
+gulp.task('sass', function() {
     gulp.src('./prod/sass/*.scss')
         .pipe(sass({
-        	compass: true,
-        	noCache: true,
-        	quiet: true
+            config_file: './config.rb',
+            css: './prod/css',
+            sass: './prod/sass'
         }))
         .pipe(gulp.dest('./prod/css'))
         .pipe(refresh(lrserver));
 });
+
 
 
 // Clear 'dist' directory, then minifying, copying, processing, uglifying, etc for build
@@ -137,9 +138,9 @@ gulp.task('build', [
 		'remove'
 	], function(){
 	gulp.run(
+		'html',
 		'sass',
 		'minify',
-		'html',
 		'uglify',
 		'imagemin'
 	);

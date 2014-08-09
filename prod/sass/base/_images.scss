@@ -13,7 +13,7 @@ img {
 	&.lazy {
 		display: none;
 		background-color: rgba(black,0.15);
-		background-image: image-url('load.gif');
+		background-image: url('../img/load.gif');
 		background-repeat: no-repeat;
 		background-size: 24px 24px;
 		background-position: center center;
