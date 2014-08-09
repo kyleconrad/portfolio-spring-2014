@@ -59,14 +59,6 @@ gulp.task('minify', ['sass'], function() {
 
 gulp.task('html', ['minify'], function() {
 	return gulp.src("./prod/**/*.html")
-		.pipe(htmlbuild({
-			js: htmlbuild.preprocess.js(function (block) {
-	      		gulp.src('./prod/js/header/*.js')
-					.pipe(concat('header.js'))
-					.pipe(gulp.dest('./prod/js'));
-	      		block.end('/js/header.js');
-	    	})
-	  	}))
 	  	.pipe(gulp.dest('./dist'));
 });
 
@@ -86,13 +78,6 @@ gulp.task('imagemin', ['uglify'], function() {
         }))
         .pipe(gulp.dest('./dist/img'));
 });
-
-gulp.task('cleanup', ['imagemin'], function() {
-    return gulp.src('./prod/js/header.js', {
-			read: false
-		})
-		.pipe(rimraf());
-})
 
 
 // Watching files for changes before reloading
@@ -140,11 +125,10 @@ gulp.task('default', ['serve', 'sass'], function(){
 // Build functionality with cleaning, moving, compiling, etc.
 gulp.task('build', ['remove'], function(){
 	return gulp.start(
-	    'sass',
-	    'minify',
-		'html',
-		'uglify',
-		'imagemin',
-		'cleanup'
+	 //    'sass',
+	 //    'minify',
+		// 'html',
+		// 'uglify',
+		'imagemin'
 	);
 });
