@@ -19,6 +19,12 @@ $(document).ready(function() {
 		//placeholder: 'img/trans.png',
 		threshold: windowHeight
 	});
+	$('.video-load').lazyvideoload({
+		threshold: windowHeight,
+		load: function(element){
+			$('.full').fitVids();
+		}
+	});
 
 
 	// RESPONSIVE VIDEOS

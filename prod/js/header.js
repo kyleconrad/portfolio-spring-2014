@@ -249,6 +249,10 @@
 
 
 
+
+
+
+
 /*global jQuery */
 /*!
 * FitVids 1.0
@@ -336,6 +340,13 @@
 
 
 
+
+
+
+
+
+
+
 /*
  * jQuery-lazyload-any v0.1.8
  * https://github.com/emn178/jquery-lazyload-any
@@ -400,7 +411,7 @@
       options.load.call(newElement, newElement);
   }
 
-  $.fn.lazyload = function(options) {
+  $.fn.lazyvideoload = function(options) {
     var opts = {
       threshold: 0,
       trigger: EVENT

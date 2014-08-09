@@ -496,6 +496,32 @@ img {
       height: 18px;
       border-radius: 3px 3px 0 0; } }
 
+.video-load.browser-video {
+  padding-top: 56.54296875%;
+  background-color: rgba(0, 0, 0, 0.15);
+  background-image: url("../img/load.gif");
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-position: center center; }
+  @media only screen and (max-width: 641px) {
+    .video-load.browser-video {
+      background-size: 16px 16px; } }
+
+.video-space {
+  position: relative;
+  border-radius: 0 0 5px 5px;
+  overflow: hidden; }
+  .video-space.browser-video {
+    padding-bottom: 56%;
+    background-color: rgba(0, 0, 0, 0.15);
+    background-image: url("../img/load.gif");
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: center center; }
+    @media only screen and (max-width: 641px) {
+      .video-space.browser-video {
+        background-size: 16px 16px; } }
+
 #tesla {
   background: #f10600; }
   #tesla .hero-image {

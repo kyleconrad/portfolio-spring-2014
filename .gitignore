@@ -1,6 +1,7 @@
 node_modules
 concepts
 dist
+_old
 
 .sass-cache
 .sass-cache/**/*
