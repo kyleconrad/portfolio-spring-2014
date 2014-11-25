@@ -4,6 +4,10 @@ $(document).ready(function() {
 	var isMobile = navigator.userAgent.match(/mobile/i);
 
 
+	// VIEWPORT BUGGYFILL
+	window.viewportUnitsBuggyfill.init();
+	
+
 	// WIDOW CONTROL
 	if (windowWidth > 640) {
 		$('h1, h2, h3, li, p, figcaption').each(function() {
