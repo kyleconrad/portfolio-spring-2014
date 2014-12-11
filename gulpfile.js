@@ -6,7 +6,6 @@ var gulp = require('gulp'),
 	// Other plugins
 	sass = require('gulp-ruby-sass'),
 	concat = require('gulp-concat'),
-	rimraf = require('gulp-rimraf'),
 	minify = require('gulp-minify-css'),
 	htmlbuild = require('gulp-htmlbuild'),
 	uglify = require('gulp-uglify'),
@@ -42,11 +41,8 @@ gulp.task('sass', function() {
 
 
 // Clear 'dist' directory, then minifying, copying, processing, uglifying, etc for build
-gulp.task('remove', function() {
-	gulp.src('./dist/**/*', {
-			read: false
-		})
-		.pipe(rimraf());
+gulp.task('remove', function (cb) {
+    rimraf('./dist', cb);
 });
 
 gulp.task('minify', ['sass'], function() {
