@@ -53,8 +53,8 @@ p {
 	font-size: 1.2rem;
 	line-height: 1.5;
 	font-family: Georgia, serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	// -webkit-font-smoothing: antialiased;
+	// -moz-osx-font-smoothing: grayscale;
 
 	#about & {
 		color: $dark;

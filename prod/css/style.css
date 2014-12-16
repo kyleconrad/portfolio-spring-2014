@@ -234,9 +234,7 @@ p {
   color: white;
   font-size: 1.2rem;
   line-height: 1.5;
-  font-family: Georgia, serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
+  font-family: Georgia, serif; }
   #about p {
     color: #1a1a1a;
     margin: 0 auto;
