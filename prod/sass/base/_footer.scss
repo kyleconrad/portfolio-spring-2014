@@ -1,21 +1,24 @@
 /* FOOTER */
 footer {
-	background: darken(white,5%);
-	padding: 2rem 0;
+	// padding: 2rem 0;
+	padding: 0 0 7rem;
 
-	li {
-		display: block;
-		float: left;
-		width: 25%;
-		text-align: center;
+	ul {
+		width: 55%;
+		max-width: 700px;
+		margin: 0 auto;
 
+		@include breakpoint(portrait) {
+			width: 70%;
+		}
 		@include breakpoint(mobile) {
-			width: 50%;
-			margin-bottom: 2rem;
+			width: 100%;
 		}
 	}
 
-	@include breakpoint(mobile) {
-		padding-bottom: 0;
+	li {
+		display: block;
+		width: 100%;
+		text-align: center;
 	}
 }
