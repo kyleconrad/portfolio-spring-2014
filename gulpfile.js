@@ -4,10 +4,11 @@ var gulp = require('gulp'),
 	browserSync = require('browser-sync'),
 
 	// Other plugins
-	sass = require('gulp-ruby-sass'),
+	sass = require('gulp-sass'),
+	sourcemaps = require('gulp-sourcemaps'),
 	concat = require('gulp-concat'),
+	rimraf = require('rimraf'),
 	minify = require('gulp-minify-css'),
-	htmlbuild = require('gulp-htmlbuild'),
 	uglify = require('gulp-uglify'),
 	imagemin = require('gulp-imagemin');
 
@@ -27,12 +28,11 @@ gulp.task('serve', function() {
 // SASS compiling & reloading
 gulp.task('sass', function() {
     gulp.src('./prod/sass/*.scss')
+	    .pipe(sourcemaps.init())
         .pipe(sass({
-        	compass: true,
-        	precision: 3,
-        	noCache: true,
-        	quiet: true
+        	errLogToConsole: true
         }))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('./prod/css'))
         .pipe(browserSync.reload({
         	stream: true
@@ -98,7 +98,6 @@ gulp.task('watch-js', function() {
 
 gulp.task('watch-html', function() {
 	gulp.watch('./prod/**/*.html', function() {
-		//browserSync.reload();
 		gulp.src('./prod/**/*.html')
 		    .pipe(browserSync.reload({
 		    	stream: true,
