@@ -1,21 +1,14 @@
 /* HEADER */
 #page-hero {
-	padding-top: 44vh;
-	padding-bottom: 48vh;
+	height: 93vh;
 
-	@include breakpoint(landscape) {
-		padding-top: 19rem;
-		padding-bottom: 23rem;
+	.main-hero {
+		position: absolute;
+		top: 48%;
+		left: 50%;
+		@include transform(translate(-50%,-50%));
+		width: 7.5rem;
 	}
-	@include breakpoint(portrait) {
-		padding-top: 30rem;
-		padding-bottom: 34rem;
-	}
-	@include breakpoint(mobile) {
-		padding-top: 14rem;
-		padding-bottom: 18rem;
-	}
-
 
 	.hero-logo {
 		position: absolute;

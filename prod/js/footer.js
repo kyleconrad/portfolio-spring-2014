@@ -1,11 +1,11 @@
+// VIEWPORT BUGGYFILL
+window.viewportUnitsBuggyfill.init();
+
+
 $(document).ready(function() {
 	var windowWidth = $(window).width(),
 		windowHeight = $(window).height();
 	var isMobile = navigator.userAgent.match(/mobile/i);
-
-
-	// VIEWPORT BUGGYFILL
-	window.viewportUnitsBuggyfill.init();
 	
 
 	// WIDOW CONTROL
@@ -18,7 +18,7 @@ $(document).ready(function() {
 
 	// LAZY LOADING
 	$('.lazy').show().lazyload({
-		//effect: 'fadeIn',
+		effect: 'fadeIn',
 		skip_invisible: false,
 		//placeholder: 'img/trans.png',
 		threshold: windowHeight

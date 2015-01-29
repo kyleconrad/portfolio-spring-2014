@@ -462,7 +462,7 @@
 
 
 /*!
- * viewport-units-buggyfill v0.4.1
+ * viewport-units-buggyfill v0.5.0
  * @web: https://github.com/rodneyrehm/viewport-units-buggyfill/
  * @author: Rodney Rehm - http://rodneyrehm.de/en/
  */
@@ -483,18 +483,50 @@
   }
 }(this, function () {
   'use strict';
-  /*global document, window, location, XMLHttpRequest, XDomainRequest*/
+  /*global document, window, navigator, location, XMLHttpRequest, XDomainRequest*/
 
   var initialized = false;
   var options;
-  var isMobileSafari = /(iPhone|iPod|iPad).+AppleWebKit/i.test(window.navigator.userAgent);
-  var iOSwithNotSupport = /Version\/(4|5|6|7)/i.test(window.navigator.userAgent);
+  var userAgent = window.navigator.userAgent;
   var viewportUnitExpression = /([+-]?[0-9.]+)(vh|vw|vmin|vmax)/g;
   var forEach = [].forEach;
   var dimensions;
   var declarations;
   var styleNode;
   var isOldInternetExplorer = false;
+  var isOperaMini = userAgent.indexOf('Opera Mini') > -1;
+
+  var isMobileSafari = /(iPhone|iPod|iPad).+AppleWebKit/i.test(userAgent) && (function() {
+    // Regexp for iOS-version tested against the following userAgent strings:
+    // Example WebView UserAgents:
+    // * iOS Chrome on iOS8: "Mozilla/5.0 (iPad; CPU OS 8_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) CriOS/39.0.2171.50 Mobile/12B410 Safari/600.1.4"
+    // * iOS Facebook on iOS7: "Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Mobile/11D201 [FBAN/FBIOS;FBAV/12.1.0.24.20; FBBV/3214247; FBDV/iPhone6,1;FBMD/iPhone; FBSN/iPhone OS;FBSV/7.1.1; FBSS/2; FBCR/AT&T;FBID/phone;FBLC/en_US;FBOP/5]"
+    // Example Safari UserAgents:
+    // * Safari iOS8: "Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.3 (KHTML, like Gecko) Version/8.0 Mobile/12A4345d Safari/600.1.4"
+    // * Safari iOS7: "Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A4449d Safari/9537.53"
+    var iOSversion = userAgent.match(/OS (\d)/);
+    // viewport units work fine in mobile Safari and webView on iOS 8+
+    return iOSversion && iOSversion.length>1 && parseInt(iOSversion[1]) < 8;
+  })();
+
+  var isBadStockAndroid = (function() {
+    // Android stock browser test derived from
+    // http://stackoverflow.com/questions/24926221/distinguish-android-chrome-from-stock-browser-stock-browsers-user-agent-contai
+    var isAndroid = userAgent.indexOf(' Android ') > -1;
+    if (!isAndroid) {
+      return false;
+    }
+
+    var isStockAndroid = userAgent.indexOf('Version/') > -1;
+    if (!isStockAndroid) {
+      return false;
+    }
+
+    var versionNumber = parseFloat((userAgent.match('Android ([0-9.]+)') || [])[1]);
+    // anything below 4.4 uses WebKit without *any* viewport support,
+    // 4.4 has issues with viewport units within calc()
+    return versionNumber <= 4.4;
+  })();
 
   // Do not remove the following comment!
   // It is a conditional comment used to
@@ -508,6 +540,10 @@
 
   @*/
 
+  // added check for IE11, since it *still* doesn't understand vmax!!!
+  if (!isOldInternetExplorer) {
+    isOldInternetExplorer = !!navigator.userAgent.match(/Trident.*rv[ :]*11\./);
+  }
   function debounce(func, wait) {
     var timeout;
     return function() {
@@ -544,10 +580,10 @@
 
     options = initOptions || {};
     options.isMobileSafari = isMobileSafari;
+    options.isBadStockAndroid = isBadStockAndroid;
 
-    // if (!options.force && !isMobileSafari && !isOldInternetExplorer && (!options.hacks || !options.hacks.required(options))) {
-    if (!options.force && !isMobileSafari && !iOSwithNotSupport && !isOldInternetExplorer && (!options.hacks || !options.hacks.required(options))) {
-      // this buggyfill only applies to mobile safari
+    if (!options.force && !isMobileSafari && !isOldInternetExplorer && !isBadStockAndroid && !isOperaMini && (!options.hacks || !options.hacks.required(options))) {
+      // this buggyfill only applies to mobile safari, IE9-10 and the Stock Android Browser.
       return;
     }
 
@@ -581,6 +617,8 @@
 
   function updateStyles() {
     styleNode.textContent = getReplacedViewportUnits();
+    // move to the end in case inline <style>s were added dynamically
+    styleNode.parentNode.appendChild(styleNode);
   }
 
   function refresh() {
@@ -590,8 +628,7 @@
 
     findProperties();
 
-    // iOS Safari will report window.innerWidth and .innerHeight as 0
-    // unless a timeout is used here.
+    // iOS Safari will report window.innerWidth and .innerHeight as 0 unless a timeout is used here.
     // TODO: figure out WHY innerWidth === 0
     setTimeout(function() {
       updateStyles();
@@ -601,8 +638,8 @@
   function findProperties() {
     declarations = [];
     forEach.call(document.styleSheets, function(sheet) {
-      if (sheet.ownerNode.id === 'patched-viewport' || !sheet.cssRules) {
-        // skip entire sheet because no rules ara present or it's the target-element of the buggyfill
+      if (sheet.ownerNode.id === 'patched-viewport' || !sheet.cssRules || sheet.ownerNode.getAttribute('data-viewport-units-buggyfill') === 'ignore') {
+        // skip entire sheet because no rules are present, it's supposed to be ignored or it's the target-element of the buggyfill
         return;
       }
 
@@ -619,7 +656,19 @@
 
   function findDeclarations(rule) {
     if (rule.type === 7) {
-      var value = rule.cssText;
+      var value;
+
+      // there may be a case where accessing cssText throws an error.
+      // I could not reproduce this issue, but the worst that can happen
+      // this way is an animation not running properly.
+      // not awesome, but probably better than a script error
+      // see https://github.com/rodneyrehm/viewport-units-buggyfill/issues/21
+      try {
+        value = rule.cssText;
+      } catch(e) {
+        return;
+      }
+
       viewportUnitExpression.lastIndex = 0;
       if (viewportUnitExpression.test(value)) {
         // KeyframesRule does not have a CSS-PropertyName
@@ -696,12 +745,21 @@
       css.push(open + buffer.join('\n') + close);
     }
 
+    // Opera Mini messes up on the content hack (it replaces the DOM node's innerHTML with the value).
+    // This fixes it. We test for Opera Mini only since it is the most expensive CSS selector
+    // see https://developer.mozilla.org/en-US/docs/Web/CSS/Universal_selectors
+    if (isOperaMini) {
+      css.push('* { content: normal !important; }');
+    }
+
     return css.join('\n\n');
   }
 
   function overwriteDeclaration(rule, name, value) {
-    var _value = value.replace(viewportUnitExpression, replaceValues);
-    var  _selectors = [];
+    var _value;
+    var _selectors = [];
+
+    _value = value.replace(viewportUnitExpression, replaceValues);
 
     if (options.hacks) {
       _value = options.hacks.overwriteDeclaration(rule, name, _value);
@@ -802,7 +860,7 @@
   }
 
   return {
-    version: '0.4.1',
+    version: '0.5.0',
     findProperties: findProperties,
     getCss: getReplacedViewportUnits,
     init: initialize,
