@@ -8,6 +8,14 @@
 		left: 50%;
 		@include transform(translate(-50%,-50%));
 		width: 7.5rem;
+
+		@include breakpoint(landscape) {
+			width: 7rem;
+			top: 47%;
+		}
+		@include breakpoint(mobile) {
+			top: 47%;
+		}
 	}
 }
 
