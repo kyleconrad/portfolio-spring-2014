@@ -80,7 +80,7 @@ $hotcars: #0076be;
 		}
 
 		&:after {
-			@include background-image(linear-gradient(transparent, $tesla));
+			@include background-image(linear-gradient(transparent 0%, $tesla 100%));
 		}
 	}
 }
@@ -95,7 +95,7 @@ $hotcars: #0076be;
 		background-position: center bottom, center bottom;
 
 		&:after {
-			@include background-image(linear-gradient(transparent, $giffffr));
+			@include background-image(linear-gradient(transparent 0%, $giffffr 100%));
 		}
 	}
 
@@ -114,7 +114,7 @@ $hotcars: #0076be;
 		background-image: url('../img/sketchbook/hero.jpg');
 
 		&:after {
-			@include background-image(linear-gradient(transparent, $sketchbook));
+			@include background-image(linear-gradient(transparent 0%, $sketchbook 100%));
 		}
 	}
 
@@ -137,7 +137,7 @@ $hotcars: #0076be;
 		}
 
 		&:after {
-			@include background-image(linear-gradient(transparent, $awesomethings));
+			@include background-image(linear-gradient(transparent 0%, $awesomethings 100%));
 		}
 	}
 
@@ -149,14 +149,21 @@ $hotcars: #0076be;
 }
 
 
-#jquery {
-	background: $jquery;
+#mfstrangers {
+	background: $mfstrangers;
 
 	.hero-image {
-		background-image: url('../img/jquery/hero.jpg');
+		background-image: url('../img/mfstrangers/hero.jpg');
+		background-position: center center;
 
 		&:after {
-			@include background-image(linear-gradient(transparent, $jquery));
+			@include background-image(linear-gradient(transparent 0%, $mfstrangers 100%));
+		}
+	}
+
+	.big-button {
+		&:hover {
+			color: $mfstrangers;
 		}
 	}
 }
@@ -173,27 +180,7 @@ $hotcars: #0076be;
 		}
 
 		&:after {
-			@include background-image(linear-gradient(transparent, $renaissance));
-		}
-	}
-}
-
-
-#mfstrangers {
-	background: $mfstrangers;
-
-	.hero-image {
-		background-image: url('../img/mfstrangers/hero.jpg');
-		background-position: center center;
-
-		&:after {
-			@include background-image(linear-gradient(transparent, $mfstrangers));
-		}
-	}
-
-	.big-button {
-		&:hover {
-			color: $mfstrangers;
+			@include background-image(linear-gradient(transparent 0%, $renaissance 100%));
 		}
 	}
 }
@@ -206,7 +193,7 @@ $hotcars: #0076be;
 		background-image: url('../img/hotcars/hero.jpg');
 
 		&:after {
-			@include background-image(linear-gradient(transparent, $hotcars));
+			@include background-image(linear-gradient(transparent 0%, $hotcars 100%));
 		}
 	}
 

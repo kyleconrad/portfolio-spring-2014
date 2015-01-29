@@ -4,18 +4,8 @@
 @charset "utf-8";
 
 $experimental-support-for-khtml: false;
-$experimental-support-for-svg: true;
-$legacy-support-for-ie: false;
-$legacy-support-for-ie8: false;
-$legacy-support-for-mozilla: false;
-
-@import "compass/reset";
-@import "compass/css3";
-@import "compass/typography";
-@import "compass/css3/box";
-
-@import "includes/_rem.scss";
-@import "includes/_animation.scss";
+@import "bourbon/bourbon";
+@import "includes/reset";
 
 
 /* MIX-INS */
@@ -83,30 +73,12 @@ body {
 .right {
 	float: right !important;
 }
-.clear {
-	clear: both !important;
-	display: block;
-	overflow: hidden;
-	visibility: hidden;
-	width: 0;
-	height: 0;
-}
 .clearfix {
-	display: inline-block;
-
 	&:after {
 		clear: both;
-		content: ' ';
-		display: block;
-		font-size: 0;
-		line-height: 0;
-		visibility: hidden;
-		width: 0;
-		height: 0;
+		display: table;
+		content: '';
 	}
-}
-* html .clearfix {
-	height: 1%;
 }
 
 .nomobile {
