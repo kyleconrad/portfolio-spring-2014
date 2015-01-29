@@ -1,0 +1,33 @@
+/* ANIMATION */
+#pupil {
+	@include animation(shifty 7s ease);
+	@include animation-delay(3s);
+	@include animation-iteration-count(infinite);
+}
+
+@include keyframes(shifty) {
+	0% {
+		@include transform(translate3d(0,0,0));
+	}
+	14% {
+		@include transform(translate3d(0,0,0));
+	}
+	25% {
+		@include transform(translate3d(-20px,0,0));
+	}
+	27% {
+		@include transform(translate3d(-20px,0,0));
+	}
+	42% {
+		@include transform(translate3d(20px,0,0));
+	}
+	44% {
+		@include transform(translate3d(20px,0,0));
+	}
+	55% {
+		@include transform(translate3d(0,0,0));
+	}
+	100% {
+		@include transform(translate3d(0,0,0));
+	}
+}

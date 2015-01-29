@@ -89,14 +89,16 @@ body {
 
 
 /* INCLUDED */
-@import 'base/_grid.scss';
+@import 'base/_grid';
 
-@import 'base/_glyphs.scss';
-@import 'base/_text.scss';
-@import 'base/_images.scss';
+@import 'base/_glyphs';
+@import 'base/_text';
+@import 'base/_images';
 
-@import 'base/_nav.scss';
-@import 'base/_header.scss';
-@import 'base/_main.scss';
-@import 'base/_work.scss';
-@import 'base/_footer.scss';
+@import 'base/_nav';
+@import 'base/_header';
+@import 'base/_main';
+@import 'base/_work';
+@import 'base/_footer';
+
+@import 'base/_animation';
