@@ -65,6 +65,6 @@
 				frame3 = getRandom(0.75, 0.9);
 
 			flameAnim.setAttribute('keyTimes', '0;' + frame1 + ';' + frame2 + ';' + frame3 + '; 1');
-		}, 800);
+		}, 790);
 	</script>
 </svg>
