@@ -41,6 +41,9 @@ html {
 	height: 100%;
 	-webkit-text-size-adjust: none;
 
+	@include breakpoint(large) {
+		font-size: 110%;
+	}
 	@include breakpoint(landscape) {
 		font-size: 95%;
 	}
