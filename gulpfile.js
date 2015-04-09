@@ -4,10 +4,10 @@ var gulp = require('gulp'),
 	browserSync = require('browser-sync'),
 
 	// Other plugins
+	rimraf = require('rimraf'),
+	es = require('event-stream'),
 	sass = require('gulp-sass'),
 	sourcemaps = require('gulp-sourcemaps'),
-	concat = require('gulp-concat'),
-	rimraf = require('rimraf'),
 	minify = require('gulp-minify-css'),
 	uglify = require('gulp-uglify'),
 	imagemin = require('gulp-imagemin');
@@ -53,26 +53,48 @@ gulp.task('minify', ['sass'], function() {
 		.pipe(gulp.dest('./dist/css'));
 });
 
-gulp.task('html', ['minify'], function() {
-	return gulp.src("./prod/**/*.html")
-	  	.pipe(gulp.dest('./dist'));
+gulp.task('html', function() {
+	return es.merge(
+		gulp.src("./prod/**/*.html")
+	  		.pipe(gulp.dest('./dist')),
+	  	gulp.src("./prod/**/*.txt")
+	  		.pipe(gulp.dest('./dist'))
+	);
 });
 
-gulp.task('uglify', ['html'], function() {
+gulp.task('scripts', function() {
   	return gulp.src('./prod/js/*.js')
       	.pipe(uglify())
       	.pipe(gulp.dest('./dist/js'));
 });
 
-gulp.task('imagemin', ['uglify'], function() {
-    return gulp.src('./prod/img/**/*')
-        .pipe(imagemin({
-        	progressive: true,
-        	svgoPlugins: [{
-        		removeViewBox: false
-        	}]
-        }))
-        .pipe(gulp.dest('./dist/img'));
+gulp.task('images', function() {
+	return es.merge(
+		gulp.src('./prod/img/**/*')
+	        .pipe(imagemin({
+	        	progressive: true,
+	        	svgoPlugins: [{
+	        		removeViewBox: false
+	        	},
+	        	{
+	        		cleanupIDs: false
+	        	},
+	        	{
+	        		collapseGroups: false
+	        	},
+	     		{
+	     			convertShapeToPath: false
+	     		}]
+	        }))
+	        .pipe(gulp.dest('./dist/img')),
+		gulp.src(['./prod/*.png', './prod/*.jpg'])
+	        .pipe(imagemin({
+	        	progressive: true
+	        }))
+	        .pipe(gulp.dest('./dist')),
+		gulp.src('./prod/*.ico')
+			.pipe(gulp.dest('./dist'))
+	);
 });
 
 
@@ -120,10 +142,9 @@ gulp.task('default', ['serve', 'sass'], function(){
 // Build functionality with cleaning, moving, compiling, etc.
 gulp.task('build', ['remove'], function(){
 	return gulp.start(
-	 //    'sass',
-	 //    'minify',
-		// 'html',
-		// 'uglify',
-		'imagemin'
+		'minify',
+		'html',
+		'scripts',
+		'images'
 	);
 });
