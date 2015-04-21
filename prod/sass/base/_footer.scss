@@ -23,12 +23,38 @@ footer {
 		text-align: center;
 	}
 
-	.zero {
-		width: 5rem;
-		margin: 0 auto;
+	// .zero {
+	// 	width: 5rem;
+	// 	margin: 0 auto;
 
-		@include breakpoint(landscape) {
-			width: 4.5rem;
-		}
+	// 	@include breakpoint(landscape) {
+	// 		width: 4.5rem;
+	// 	}
+	// }
+}
+
+#dmx {
+	width: 5rem;
+	height: 5rem;
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	opacity: 0.1;
+
+	&:before,
+	&:after {
+		display: block;
+		width: 100%;
+		top: 40%;
+		height: 0.75rem;
+		background: $dark;
+		position: absolute;
+		content: '';
+	}
+	&:before {
+		@include transform(rotate(45deg));
+	}
+	&:after {
+		@include transform(rotate(-45deg));
 	}
 }

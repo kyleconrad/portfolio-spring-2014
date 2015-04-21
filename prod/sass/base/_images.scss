@@ -31,3 +31,7 @@ img {
 		}
 	}
 }
+
+#ampersand {
+	@include transform(translateX(-3px));
+}
