@@ -26,7 +26,7 @@ $(document).ready(function() {
 	$('.video-load').lazyvideoload({
 		threshold: windowHeight,
 		load: function(element){
-			$('.full').fitVids();
+			$('.full, .half').fitVids();
 		}
 	});
 

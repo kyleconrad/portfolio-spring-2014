@@ -1,4 +1,7 @@
 /* WORK */
+$nbcsports: #f1a536;
+$worldofx: #d8232a;
+$thisweeksplaylist: #121212;
 $tesla: #f10600;
 $giffffr: #ff007f;
 $sketchbook: #0c1e27;
@@ -13,13 +16,24 @@ $hotcars: #0076be;
 .browser {
 	width: 100%;
 	height: 34px;
-	border-bottom: 1px solid rgba(black, 0.25);
-	background-image: url('../img/browser-btn.png'), url('../img/browser-chrome.png');
+	background-image: url('/img/browser-btn.png'), url('/img/browser-chrome.png');
 	background-repeat: no-repeat, repeat-x;
 	background-size: auto 100%;
 	background-position: left center;
 	border-radius: 5px 5px 0 0;
 	z-index: 10;
+	position: relative;
+
+	&:after {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: rgba(black, 0.2);
+		display: block;
+		content: '';
+	}
 
 	@include breakpoint(landscape) {
 		height: 28px;
@@ -37,7 +51,7 @@ $hotcars: #0076be;
 	&.browser-video {
 		padding-top: 56.54296875%;
 		background-color: rgba(black,0.15);
-		background-image: url('../img/load.gif');
+		background-image: url('/img/load.gif');
 		background-repeat: no-repeat;
 		background-size: 24px 24px;
 		background-position: center center;
@@ -55,7 +69,7 @@ $hotcars: #0076be;
 	&.browser-video {
 		padding-bottom: 56%;
 		background-color: rgba(black,0.15);
-		background-image: url('../img/load.gif');
+		background-image: url('/img/load.gif');
 		background-repeat: no-repeat;
 		background-size: 24px 24px;
 		background-position: center center;
@@ -69,18 +83,69 @@ $hotcars: #0076be;
 
 
 
+#nbcsports {
+	background: $nbcsports;
+
+	.hero-image {
+		background-image: url('/img/nbcsports/hero.jpg');
+
+		&:after {
+			@include background-image(linear-gradient(to bottom, transparent 0%, $nbcsports 100%));
+		}
+	}
+}
+
+
+#worldofx {
+	background: $worldofx;
+
+	.hero-image {
+		background-image: url('/img/worldofx/hero.jpg');
+
+		&:after {
+			@include background-image(linear-gradient(to bottom, transparent 0%, $worldofx 100%));
+		}
+	}
+
+	.big-button {
+		&:hover {
+			color: $worldofx;
+		}
+	}
+}
+
+
+#thisweeksplaylist {
+	background: $thisweeksplaylist;
+
+	.hero-image {
+		background-image: url('/img/thisweeksplaylist/hero.jpg');
+
+		&:after {
+			@include background-image(linear-gradient(to bottom, transparent 0%, $thisweeksplaylist 100%));
+		}
+	}
+
+	.big-button {
+		&:hover {
+			color: $thisweeksplaylist;
+		}
+	}
+}
+
+
 #tesla {
 	background: $tesla;
 
 	.hero-image {
-		background-image: url('../img/tesla/hero.jpg');
+		background-image: url('/img/tesla/hero.jpg');
 
 		@include breakpoint(mobile) {
 			background-position: 17% top;
 		}
 
 		&:after {
-			@include background-image(linear-gradient(transparent 0%, $tesla 100%));
+			@include background-image(linear-gradient(to bottom, transparent 0%, $tesla 100%));
 		}
 	}
 }
@@ -90,12 +155,12 @@ $hotcars: #0076be;
 	background: $giffffr;
 
 	.hero-image {
-		background-image: url('../img/giffffr/hero.gif'), url('../img/giffffr/hero.jpg');
+		background-image: url('/img/giffffr/hero.gif'), url('/img/giffffr/hero.jpg');
 		background-size: cover, cover;
 		background-position: center bottom, center bottom;
 
 		&:after {
-			@include background-image(linear-gradient(transparent 0%, $giffffr 100%));
+			@include background-image(linear-gradient(to bottom, transparent 0%, $giffffr 100%));
 		}
 	}
 
@@ -111,10 +176,10 @@ $hotcars: #0076be;
 	background: $sketchbook;
 
 	.hero-image {
-		background-image: url('../img/sketchbook/hero.jpg');
+		background-image: url('/img/sketchbook/hero.jpg');
 
 		&:after {
-			@include background-image(linear-gradient(transparent 0%, $sketchbook 100%));
+			@include background-image(linear-gradient(to bottom, transparent 0%, $sketchbook 100%));
 		}
 	}
 
@@ -130,14 +195,14 @@ $hotcars: #0076be;
 	background: $awesomethings;
 
 	.hero-image {
-		background-image: url('../img/awesomethings/hero.jpg');
+		background-image: url('/img/awesomethings/hero.jpg');
 
 		@include breakpoint(mobile) {
 			background-position: 35% top;
 		}
 
 		&:after {
-			@include background-image(linear-gradient(transparent 0%, $awesomethings 100%));
+			@include background-image(linear-gradient(to bottom, transparent 0%, $awesomethings 100%));
 		}
 	}
 
@@ -153,11 +218,11 @@ $hotcars: #0076be;
 	background: $mfstrangers;
 
 	.hero-image {
-		background-image: url('../img/mfstrangers/hero.jpg');
+		background-image: url('/img/mfstrangers/hero.jpg');
 		background-position: center center;
 
 		&:after {
-			@include background-image(linear-gradient(transparent 0%, $mfstrangers 100%));
+			@include background-image(linear-gradient(to bottom, transparent 0%, $mfstrangers 100%));
 		}
 	}
 
@@ -173,14 +238,14 @@ $hotcars: #0076be;
 	background: $renaissance;
 
 	.hero-image {
-		background-image: url('../img/renaissance/hero.jpg');
+		background-image: url('/img/renaissance/hero.jpg');
 
 		@include breakpoint(mobile) {
 			background-position: 25% top;
 		}
 
 		&:after {
-			@include background-image(linear-gradient(transparent 0%, $renaissance 100%));
+			@include background-image(linear-gradient(to bottom, transparent 0%, $renaissance 100%));
 		}
 	}
 }
@@ -190,10 +255,10 @@ $hotcars: #0076be;
 	background: $hotcars;
 
 	.hero-image {
-		background-image: url('../img/hotcars/hero.jpg');
+		background-image: url('/img/hotcars/hero.jpg');
 
 		&:after {
-			@include background-image(linear-gradient(transparent 0%, $hotcars 100%));
+			@include background-image(linear-gradient(to bottom, transparent 0%, $hotcars 100%));
 		}
 	}
 
