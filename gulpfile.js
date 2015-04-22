@@ -70,7 +70,7 @@ gulp.task('scripts', function() {
 
 gulp.task('images', function() {
 	return es.merge(
-		gulp.src('./prod/img/**/*')
+		gulp.src(['./prod/img/**/*', '!./prod/img/**/*.gif'])
 	        .pipe(imagemin({
 	        	progressive: true,
 	        	svgoPlugins: [{
@@ -87,6 +87,8 @@ gulp.task('images', function() {
 	     		}]
 	        }))
 	        .pipe(gulp.dest('./dist/img')),
+		gulp.src('./prod/img/**/*.gif')
+			.pipe(gulp.dest('./dist/img')),
 		gulp.src(['./prod/*.png', './prod/*.jpg'])
 	        .pipe(imagemin({
 	        	progressive: true
