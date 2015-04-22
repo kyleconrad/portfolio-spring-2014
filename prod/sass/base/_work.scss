@@ -121,6 +121,10 @@ $hotcars: #0076be;
 	.hero-image {
 		background-image: url('/img/thisweeksplaylist/hero.jpg');
 
+		@include breakpoint(mobile) {
+			background-position: 20% top;
+		}
+
 		&:after {
 			@include background-image(linear-gradient(to bottom, transparent 0%, $thisweeksplaylist 100%));
 		}
