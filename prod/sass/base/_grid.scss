@@ -30,11 +30,16 @@ header {
 
 
 
+.grid_row {
+	// padding-bottom: 20px;
+	clear: both;
+	width: 100%;
+}
 .full,
 .half,
 .third,
 .two-third {
-	margin-bottom: 1.5rem;
+	margin-bottom: 20px;
 }
 
 .full {
@@ -43,29 +48,86 @@ header {
 }
 
 .half {
-	@include calc(width, "50% - 0.75rem");
+	// @include calc(width, "50% - 10px");
+	width: 50%;
+	padding-right: 10px;
+	padding-left: 0;
+
+	&:last-child {
+		padding-right: 0;
+		padding-left: 10px;
+
+		@include breakpoint(mobile) {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
 }
 
 .third {
-	@include calc(width, "(100% / 3) - 1rem");
+	// @include calc(width, "(100% / 3) - 10px");
+	@include calc(width, "100% / 3");
+	padding-right: 14px;
+	padding-left: 14px;
+
+	&:first-child {
+		padding-left: 0;
+
+		@include breakpoint(mobile) {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+	&:not(:first-child):not(:last-child) {
+		padding-left: 7px;
+		padding-right: 7px;
+
+		@include breakpoint(mobile) {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+	&:last-child {
+		padding-right: 0;
+
+		@include breakpoint(mobile) {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
 }
 
 .two-third {
-	@include calc(width, "((100% / 3) * 2) - 0.75rem");
+	// @include calc(width, "((100% / 3) * 2) - 10px");
+	@include calc(width, "(100% / 3) * 2");
+	padding-right: 6px;
+	padding-left: 0;
+
+	&:last-child {
+		padding-left: 6px;
+		padding-right: 0;
+
+		@include breakpoint(mobile) {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
 }
 
 .half,
 .third,
 .two-third {
 	float: left;
-	margin-right: 1.5rem;
+	// margin-right: 20px;
 
 	@include breakpoint(mobile) {
 		width: 100%;
 		margin-right: 0;
+		padding-left: 0;
+		padding-right: 0;
 	}
 }
 
-.row-last {
-	margin-right: 0;
-}
+// .row-last {
+// 	margin-right: 0;
+// }
