@@ -47,7 +47,6 @@
 
 
 
-/* TEAM */
 Kyle Conrad
 kyleconrad.com
 @kyle_conrad
@@ -59,6 +58,3 @@ Jesse Shawl
 jesse.sh/awl/
 @jshawl
 
-Tiffany Mathis
-www.tdmathis.com/
-@tdmathis
