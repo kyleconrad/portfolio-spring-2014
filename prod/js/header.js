@@ -32,30 +32,59 @@
             placeholder     : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
         };
 
-        function update() {
-            var counter = 0;
+        // function update() {
+        //     var counter = 0;
 
-            elements.each(function() {
-                var $this = $(this);
-                if (settings.skip_invisible && !$this.is(":visible")) {
-                    return;
-                }
-                if ($.abovethetop(this, settings) ||
-                    $.leftofbegin(this, settings)) {
-                        /* Nothing. */
-                } else if (!$.belowthefold(this, settings) &&
-                    !$.rightoffold(this, settings)) {
-                        $this.trigger("appear");
-                        /* if we found an image we'll load, reset the counter */
-                        counter = 0;
-                } else {
-                    if (++counter > settings.failure_limit) {
-                        return false;
-                    }
-                }
-            });
+        //     elements.each(function() {
+        //         var $this = $(this);
+        //         if (settings.skip_invisible && !$this.is(":visible")) {
+        //             return;
+        //         }
+        //         if ($.abovethetop(this, settings) ||
+        //             $.leftofbegin(this, settings)) {
+        //                 /* Nothing. */
+        //         } else if (!$.belowthefold(this, settings) &&
+        //             !$.rightoffold(this, settings)) {
+        //                 $this.trigger("appear");
+        //                 /* if we found an image we'll load, reset the counter */
+        //                 counter = 0;
+        //         } else {
+        //             if (++counter > settings.failure_limit) {
+        //                 return false;
+        //             }
+        //         }
+        //     });
 
-        }
+        // }
+
+	    function update() {
+	        if (elements.length <= 0)
+	            return;
+
+	        var counter = 0;
+
+	        for(var i = 0; i < elements.length; i++) {
+	            var $this = $(elements[i]);
+	            if (settings.skip_invisible && !$this.is(":visible")) {
+	                return;
+	            }
+	            if ($.abovethetop(elements[i], settings) ||
+	                $.leftofbegin(elements[i], settings)) {
+	                    /* Nothing. */
+	            } else if (!$.belowthefold(elements[i], settings) &&
+	                !$.rightoffold(elements[i], settings)) {
+	                    $this.trigger("appear");
+	                    /* if we found an image we'll load, reset the counter */
+	                    counter = 0;
+	                    elements.splice(i, 1);
+	                    i--;
+	            } else {
+	                if (++counter > settings.failure_limit) {
+	                    return false;
+	                }
+	            }
+	        };
+	    }
 
         if(options) {
             /* Maintain BC for a couple of versions. */
@@ -76,11 +105,20 @@
                       settings.container === window) ? $window : $(settings.container);
 
         /* Fire one scroll event per scroll. Not one scroll event per image. */
-        if (0 === settings.event.indexOf("scroll")) {
-            $container.bind(settings.event, function() {
-                return update();
-            });
-        }
+        // if (0 === settings.event.indexOf("scroll")) {
+        //     $container.bind(settings.event, function() {
+        //         return update();
+        //     });
+        // }
+	    var timeout;
+	    if (0 === settings.event.indexOf("scroll")) {
+	        $container.bind(settings.event, function() {
+	            clearTimeout(timeout);
+	            timeout = setTimeout(function() { update(); }, 100);
+	            return false;
+	        });
+	    }
+
 
         this.each(function() {
             var self = this;
