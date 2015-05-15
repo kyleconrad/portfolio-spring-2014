@@ -17,14 +17,16 @@ $(document).ready(function() {
 
 
 	// LAZY LOADING
-	$('.lazy').show().lazyload({
-		effect: 'fadeIn',
-		skip_invisible: false,
-		//placeholder: 'img/trans.png',
-		threshold: windowHeight
-	});
+	$('.lazy').show();
+	window.lazySizesConfig = window.lazySizesConfig || {};
+	lazySizesConfig.lazyClass = 'lazy';
+	lazySizesConfig.expand = Math.min(Math.max(document.documentElement.clientWidth, innerWidth), Math.max(document.documentElement.clientHeight, innerHeight)) > 600 ? 500 : 319;
+	lazySizesConfig.srcAttr = 'data-original';
+	lazySizesConfig.loadMode = 2;
+	lazySizesConfig.expFactor = 2.5;
+
 	$('.video-load').lazyvideoload({
-		threshold: windowHeight,
+		threshold: windowHeight + (windowHeight / 4),
 		load: function(element){
 			$('.full, .half').fitVids();
 		}
@@ -32,5 +34,5 @@ $(document).ready(function() {
 
 
 	// RESPONSIVE VIDEOS
-	$('.full').fitVids();
+	$('.full .half').fitVids();
 });
