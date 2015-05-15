@@ -23,6 +23,9 @@
     "rimraf": "~2.2.8",
     "gulp-uglify": "^1.0.1",
     "gulp-htmlbuild": "^0.3.0",
-    "event-stream": "~3.3.0"
+    "event-stream": "^3.3.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-usemin": "^0.3.11",
+    "gulp-inject": "^1.2.0"
   }
 }

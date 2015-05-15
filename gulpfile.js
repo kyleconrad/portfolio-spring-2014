@@ -9,7 +9,10 @@ var gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	sourcemaps = require('gulp-sourcemaps'),
 	minify = require('gulp-minify-css'),
+	concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
+	usemin = require('gulp-usemin'),
+	inject = require('gulp-inject'),
 	imagemin = require('gulp-imagemin');
 
 
@@ -53,19 +56,35 @@ gulp.task('minify', ['sass'], function() {
 		.pipe(gulp.dest('./dist/css'));
 });
 
-gulp.task('html', function() {
+gulp.task('scripts', function() {
 	return es.merge(
-		gulp.src("./prod/**/*.html")
-	  		.pipe(gulp.dest('./dist')),
+	  	gulp.src('./prod/js/*.js')
+	      	.pipe(uglify())
+	      	.pipe(gulp.dest('./dist/js')),
+		gulp.src('./prod/js/lib/*.js')
+			.pipe(concat('header.js'))
+			.pipe(uglify({
+	      		mangle: false
+	      	}))
+			.pipe(gulp.dest('./dist/js'))
+  	);
+});
+
+gulp.task('html', ['scripts'], function() {
+	return es.merge(
+		gulp.src('./prod/*.html')
+			.pipe(usemin())
+			.pipe(inject(gulp.src('./dist/js/header.js', {
+				read: false
+			}), {
+				ignorePath: 'dist',
+				removeTags: true,
+				name: 'header'
+			}))
+			.pipe(gulp.dest('./dist')),
 	  	gulp.src("./prod/**/*.txt")
 	  		.pipe(gulp.dest('./dist'))
 	);
-});
-
-gulp.task('scripts', function() {
-  	return gulp.src('./prod/js/*.js')
-      	.pipe(uglify())
-      	.pipe(gulp.dest('./dist/js'));
 });
 
 gulp.task('images', function() {
@@ -140,7 +159,6 @@ gulp.task('build', ['remove'], function(){
 	return gulp.start(
 		'minify',
 		'html',
-		'scripts',
 		'images'
 	);
 });
