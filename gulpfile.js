@@ -13,7 +13,9 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	usemin = require('gulp-usemin'),
 	inject = require('gulp-inject'),
-	imagemin = require('gulp-imagemin');
+	imagemin = require('gulp-imagemin'),
+	gutil = require('gulp-util'),
+	rsync = require('rsyncwrapper').rsync;
 
 
 
@@ -161,4 +163,22 @@ gulp.task('build', ['remove'], function(){
 		'html',
 		'images'
 	);
+});
+
+
+
+
+// Deployment to server
+gulp.task('deploy', function() {
+	rsync({
+		ssh: true,
+		src: 'dist/',
+		dest: 'gifff.fr:/var/www/kyleconrad.com/public_html',
+		recursive: true,
+		syncDest: true,
+		args: ['--verbose --progress'],
+		exclude: ['.DS_Store']
+	}, function(error, stdout, stderr, cmd) {
+		gutil.log(stdout);
+	});
 });

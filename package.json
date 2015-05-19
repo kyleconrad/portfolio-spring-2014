@@ -26,6 +26,8 @@
     "event-stream": "^3.3.1",
     "gulp-concat": "^2.5.2",
     "gulp-usemin": "^0.3.11",
-    "gulp-inject": "^1.2.0"
+    "gulp-inject": "^1.2.0",
+    "rsyncwrapper": "~0.4.2",
+    "gulp-util": "~3.0.4"
   }
 }
