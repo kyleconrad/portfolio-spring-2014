@@ -46,8 +46,11 @@ gulp.task('sass', function() {
 
 
 // Clear 'dist' directory, then minifying, copying, processing, uglifying, etc for build
-gulp.task('remove', function (cb) {
-    rimraf('./dist', cb);
+gulp.task('remove', function() {
+	gulp.src('./dist/**/*', {
+			read: false
+		})
+		.pipe(rimraf());
 });
 
 gulp.task('minify', ['sass'], function() {
