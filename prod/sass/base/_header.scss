@@ -1,20 +1,16 @@
 /* HEADER */
 #main-header {
-	height: 93vh;
+	height: 95vh;
 
 	.hero {
 		position: absolute;
-		top: 48%;
+		top: 50%;
 		left: 50%;
 		@include transform(translate(-50%,-50%));
 		width: 7.5rem;
 
 		@include breakpoint(landscape) {
 			width: 7rem;
-			top: 47%;
-		}
-		@include breakpoint(mobile) {
-			top: 46%;
 		}
 	}
 
@@ -22,7 +18,7 @@
 		position: absolute;
 		display: block;
 
-		top: 48%;
+		top: 50%;
 		left: 50%;
 		width: 12rem;
 		height: calc(12rem - 1px);
@@ -37,10 +33,6 @@
 		@include breakpoint(landscape) {
 			width: 11.5rem;
 			height: 11.5rem;
-			top: 47%;
-		}
-		@include breakpoint(mobile) {
-			top: 46%;
 		}
 	}
 }
