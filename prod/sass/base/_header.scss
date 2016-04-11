@@ -17,6 +17,32 @@
 			top: 46%;
 		}
 	}
+
+	&:after {
+		position: absolute;
+		display: block;
+
+		top: 48%;
+		left: 50%;
+		width: 12rem;
+		height: calc(12rem - 1px);
+		background: $dark;
+
+		z-index: -1;
+
+		@include transform(translate(-50%,-50%));
+
+		content: '';
+
+		@include breakpoint(landscape) {
+			width: 11.5rem;
+			height: 11.5rem;
+			top: 47%;
+		}
+		@include breakpoint(mobile) {
+			top: 46%;
+		}
+	}
 }
 
 .hero-image {
