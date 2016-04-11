@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 	es = require('event-stream'),
 	sass = require('gulp-sass'),
 	sourcemaps = require('gulp-sourcemaps'),
-	minify = require('gulp-minify-css'),
+	cleanCSS = require('gulp-clean-css'),
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
 	usemin = require('gulp-usemin'),
@@ -52,8 +52,8 @@ gulp.task('remove', function (cb) {
 
 gulp.task('minify', ['sass'], function() {
 	return gulp.src('./prod/css/*.css')
-		.pipe(minify({
-			keepSpecialComments: 0
+		.pipe(cleanCSS({
+			compatibility: '*'
 		}))
 		.pipe(gulp.dest('./dist/css'));
 });
@@ -173,7 +173,7 @@ gulp.task('deploy', function() {
 	rsync({
 		ssh: true,
 		src: 'dist/',
-		dest: 'gifff.fr:/var/www/kyleconrad.com/public_html',
+		dest: '162.243.216.48:/var/www/kyleconrad.com/public_html',
 		recursive: true,
 		syncDest: true,
 		args: ['--verbose --progress'],
