@@ -1,5 +1,7 @@
 /* WORK */
 $doom: #de1133;
+$starwars: #b89e4e;
+$nclud: #ac2eff;
 $nbcsports: #f1a536;
 $worldofx: #d8232a;
 $thisweeksplaylist: #121212;
@@ -97,6 +99,32 @@ $hotcars: #0076be;
 
 		&:after {
 			@include background-image(linear-gradient(to bottom, rgba($doom, 0) 0%, $doom 100%));
+		}
+	}
+}
+
+
+#starwars {
+	background: $starwars;
+
+	.hero-image {
+		background-image: url('/img/starwars/hero.jpg');
+
+		&:after {
+			@include background-image(linear-gradient(to bottom, rgba($starwars, 0) 0%, $starwars 100%));
+		}
+	}
+}
+
+
+#nclud {
+	background: $nclud;
+
+	.hero-image {
+		background-image: url('/img/nclud/hero.jpg');
+
+		&:after {
+			@include background-image(linear-gradient(to bottom, rgba($nclud, 0) 0%, $nclud 100%));
 		}
 	}
 }
