@@ -1,6 +1,11 @@
 /* HEADER */
 #main-header {
 	height: 95vh;
+	background: url('/img/hero.jpg') no-repeat;
+	background-size: cover;
+	background-position: center center;
+
+	border-bottom: 1px solid rgba(black, 0.15);
 
 	.hero {
 		position: absolute;
@@ -8,6 +13,7 @@
 		left: 50%;
 		@include transform(translate(-50%,-50%));
 		width: 7.5rem;
+		z-index: 2;
 
 		@include breakpoint(landscape) {
 			width: 7rem;
@@ -24,7 +30,7 @@
 		height: calc(12rem - 1px);
 		background: $dark;
 
-		z-index: -1;
+		z-index: 1;
 
 		@include transform(translate(-50%,-50%));
 
@@ -42,7 +48,7 @@
 	background-repeat: no-repeat;
 	background-position: center 5%;
 	height: 30rem;
-	border-top: 1px solid rgba(black,0.25);
+	border-top: 1px solid rgba(black,0.35);
 
 	&:after {
 		position: absolute;

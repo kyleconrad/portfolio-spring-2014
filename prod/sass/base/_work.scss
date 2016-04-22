@@ -1,4 +1,5 @@
 /* WORK */
+$doom: #de1133;
 $nbcsports: #f1a536;
 $worldofx: #d8232a;
 $thisweeksplaylist: #121212;
@@ -83,6 +84,19 @@ $hotcars: #0076be;
 
 
 
+#doom {
+	background: $doom;
+
+	.hero-image {
+		background-image: url('/img/doom/hero.jpg');
+
+		&:after {
+			@include background-image(linear-gradient(to bottom, rgba($doom, 0) 0%, $doom 100%));
+		}
+	}
+}
+
+
 #nbcsports {
 	background: $nbcsports;
 
@@ -90,7 +104,7 @@ $hotcars: #0076be;
 		background-image: url('/img/nbcsports/hero.jpg');
 
 		&:after {
-			@include background-image(linear-gradient(to bottom, transparent 0%, $nbcsports 100%));
+			@include background-image(linear-gradient(to bottom, rgba($nbcsports, 0) 0%, $nbcsports 100%));
 		}
 	}
 }
@@ -103,7 +117,7 @@ $hotcars: #0076be;
 		background-image: url('/img/worldofx/hero.jpg');
 
 		&:after {
-			@include background-image(linear-gradient(to bottom, transparent 0%, $worldofx 100%));
+			@include background-image(linear-gradient(to bottom, rgba($worldofx, 0) 0%, $worldofx 100%));
 		}
 	}
 
@@ -126,7 +140,7 @@ $hotcars: #0076be;
 		}
 
 		&:after {
-			@include background-image(linear-gradient(to bottom, transparent 0%, $thisweeksplaylist 100%));
+			@include background-image(linear-gradient(to bottom, rgba($thisweeksplaylist, 0) 0%, $thisweeksplaylist 100%));
 		}
 	}
 
@@ -149,7 +163,7 @@ $hotcars: #0076be;
 		}
 
 		&:after {
-			@include background-image(linear-gradient(to bottom, transparent 0%, $tesla 100%));
+			@include background-image(linear-gradient(to bottom, rgba($tesla, 0) 0%, $tesla 100%));
 		}
 	}
 }
@@ -164,7 +178,7 @@ $hotcars: #0076be;
 		background-position: center bottom, center bottom;
 
 		&:after {
-			@include background-image(linear-gradient(to bottom, transparent 0%, $giffffr 100%));
+			@include background-image(linear-gradient(to bottom, rgba($giffffr, 0) 0%, $giffffr 100%));
 		}
 	}
 
@@ -176,46 +190,46 @@ $hotcars: #0076be;
 }
 
 
-#sketchbook {
-	background: $sketchbook;
+// #sketchbook {
+// 	background: $sketchbook;
 
-	.hero-image {
-		background-image: url('/img/sketchbook/hero.jpg');
+// 	.hero-image {
+// 		background-image: url('/img/sketchbook/hero.jpg');
 
-		&:after {
-			@include background-image(linear-gradient(to bottom, transparent 0%, $sketchbook 100%));
-		}
-	}
+// 		&:after {
+// 			@include background-image(linear-gradient(to bottom, transparent 0%, $sketchbook 100%));
+// 		}
+// 	}
 
-	.big-button {
-		&:hover {
-			color: $sketchbook;
-		}
-	}
-}
+// 	.big-button {
+// 		&:hover {
+// 			color: $sketchbook;
+// 		}
+// 	}
+// }
 
 
-#awesomethings {
-	background: $awesomethings;
+// #awesomethings {
+// 	background: $awesomethings;
 
-	.hero-image {
-		background-image: url('/img/awesomethings/hero.jpg');
+// 	.hero-image {
+// 		background-image: url('/img/awesomethings/hero.jpg');
 
-		@include breakpoint(mobile) {
-			background-position: 35% top;
-		}
+// 		@include breakpoint(mobile) {
+// 			background-position: 35% top;
+// 		}
 
-		&:after {
-			@include background-image(linear-gradient(to bottom, transparent 0%, $awesomethings 100%));
-		}
-	}
+// 		&:after {
+// 			@include background-image(linear-gradient(to bottom, transparent 0%, $awesomethings 100%));
+// 		}
+// 	}
 
-	.big-button {
-		&:hover {
-			color: $awesomethings;
-		}
-	}
-}
+// 	.big-button {
+// 		&:hover {
+// 			color: $awesomethings;
+// 		}
+// 	}
+// }
 
 
 #mfstrangers {
@@ -226,7 +240,7 @@ $hotcars: #0076be;
 		background-position: center center;
 
 		&:after {
-			@include background-image(linear-gradient(to bottom, transparent 0%, $mfstrangers 100%));
+			@include background-image(linear-gradient(to bottom, rgba($mfstrangers, 0) 0%, $mfstrangers 100%));
 		}
 	}
 
@@ -238,21 +252,21 @@ $hotcars: #0076be;
 }
 
 
-#renaissance {
-	background: $renaissance;
+// #renaissance {
+// 	background: $renaissance;
 
-	.hero-image {
-		background-image: url('/img/renaissance/hero.jpg');
+// 	.hero-image {
+// 		background-image: url('/img/renaissance/hero.jpg');
 
-		@include breakpoint(mobile) {
-			background-position: 25% top;
-		}
+// 		@include breakpoint(mobile) {
+// 			background-position: 25% top;
+// 		}
 
-		&:after {
-			@include background-image(linear-gradient(to bottom, transparent 0%, $renaissance 100%));
-		}
-	}
-}
+// 		&:after {
+// 			@include background-image(linear-gradient(to bottom, transparent 0%, $renaissance 100%));
+// 		}
+// 	}
+// }
 
 
 #hotcars {
@@ -262,7 +276,7 @@ $hotcars: #0076be;
 		background-image: url('/img/hotcars/hero.jpg');
 
 		&:after {
-			@include background-image(linear-gradient(to bottom, transparent 0%, $hotcars 100%));
+			@include background-image(linear-gradient(to bottom, rgba($hotcars, 0) 0%, $hotcars 100%));
 		}
 	}
 
