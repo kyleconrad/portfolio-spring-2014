@@ -83,6 +83,17 @@ p {
 		&:hover {
 			text-decoration: underline;
 		}
+
+		.work-block & {
+			color: white;
+		}
+	}
+
+	strong {
+		font-weight: bold;
+	}
+	em {
+		font-style: italic;
 	}
 }
 

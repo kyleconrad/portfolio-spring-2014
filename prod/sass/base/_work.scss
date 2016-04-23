@@ -114,6 +114,12 @@ $hotcars: #0076be;
 			@include background-image(linear-gradient(to bottom, rgba($starwars, 0) 0%, $starwars 100%));
 		}
 	}
+
+	.big-button {
+		&:hover {
+			color: $starwars;
+		}
+	}
 }
 
 
@@ -125,6 +131,12 @@ $hotcars: #0076be;
 
 		&:after {
 			@include background-image(linear-gradient(to bottom, rgba($nclud, 0) 0%, $nclud 100%));
+		}
+	}
+
+	.big-button {
+		&:hover {
+			color: $nclud;
 		}
 	}
 }
