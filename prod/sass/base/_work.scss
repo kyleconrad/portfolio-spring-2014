@@ -64,24 +64,24 @@ $hotcars: #0076be;
 		}
 	}
 }
-.video-space {
-	position: relative;
-	border-radius: 0 0 5px 5px;
-	overflow: hidden;
+// .video-space {
+// 	position: relative;
+// 	border-radius: 0 0 5px 5px;
+// 	overflow: hidden;
 
-	&.browser-video {
-		padding-bottom: 56%;
-		background-color: rgba(black,0.15);
-		background-image: url('/img/load.gif');
-		background-repeat: no-repeat;
-		background-size: 24px 24px;
-		background-position: center center;
+// 	&.browser-video {
+// 		padding-bottom: 56%;
+// 		background-color: rgba(black,0.15);
+// 		background-image: url('/img/load.gif');
+// 		background-repeat: no-repeat;
+// 		background-size: 24px 24px;
+// 		background-position: center center;
 
-		@include breakpoint(mobile) {
-			background-size: 16px 16px;
-		}
-	}
-}
+// 		@include breakpoint(mobile) {
+// 			background-size: 16px 16px;
+// 		}
+// 	}
+// }
 
 
 

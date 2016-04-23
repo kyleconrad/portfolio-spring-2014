@@ -164,7 +164,9 @@ footer {
 	width: 100%;
 	line-height: 1.25;
 	letter-spacing: 0.5em;
-	padding: 1.65em 0.65em 1.65em 1em;
+	// padding: 1.65em 0.75em 1.65em 1em;
+	padding: 1.65em 1.25em;
+	text-indent: 0.3em;
 
 	&:hover {
 		background: white;
