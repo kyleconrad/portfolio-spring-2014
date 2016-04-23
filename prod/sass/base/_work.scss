@@ -91,7 +91,7 @@ $hotcars: #0076be;
 
 	.hero-image {
 		background-image: url('/img/doom/hero.jpg');
-		background-position: right top;
+		background-position: right 5%;
 
 		@include breakpoint(mobile) {
 			background-position: 80% top;
@@ -128,6 +128,7 @@ $hotcars: #0076be;
 
 	.hero-image {
 		background-image: url('/img/nclud/hero.jpg');
+		background-position: right top;
 
 		&:after {
 			@include background-image(linear-gradient(to bottom, rgba($nclud, 0) 0%, $nclud 100%));
