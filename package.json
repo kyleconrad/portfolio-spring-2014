@@ -11,9 +11,11 @@
     "url": "https://github.com/kyleconrad/portfolio-spring-2014.git"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
     "browser-sync": "^2.11.2",
+    "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
+    "gulp-file-include": "^0.13.7",
+    "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0"
   },

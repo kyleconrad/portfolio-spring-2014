@@ -4,6 +4,8 @@ var gulp = require('gulp'),
 	browserSync = require('browser-sync'),
 
 	// Other plugins
+	fileinclude = require('gulp-file-include'),
+	rename = require('gulp-rename'),
 	rimraf = require('rimraf'),
 	es = require('event-stream'),
 	sass = require('gulp-sass'),
@@ -27,6 +29,23 @@ gulp.task('serve', function() {
 		},
 		host: 'localhost'
     });
+});
+
+
+// HTML file including
+gulp.task('html-base', function() {
+	return gulp.src('./prod/templates/index.tpl.html')
+		.pipe(fileinclude({
+			prefix: '@@',
+			basepath: './prod/templates/work/'
+		}))
+		.pipe(rename({
+ 			extname: ''
+		 }))
+ 		.pipe(rename({
+ 			extname: '.html'
+ 		}))
+		.pipe(gulp.dest('./prod'));
 });
 
 
@@ -137,8 +156,8 @@ gulp.task('watch-js', function() {
 	    }));
 });
 
-gulp.task('watch-html', function() {
-	gulp.src('./prod/**/*.html')
+gulp.task('watch-html', ['html-base'], function() {
+	gulp.src('./prod/templates/**/*.html')
 	    .pipe(browserSync.reload({
 	    	stream: true,
 	    	once: true
@@ -149,7 +168,7 @@ gulp.task('watch-html', function() {
 
 
 // Default functionality includes server with browser sync and watching
-gulp.task('default', ['serve', 'sass'], function(){
+gulp.task('default', ['serve', 'html-base', 'sass'], function(){
 	gulp.watch('./prod/sass/**/*.scss', ['sass']);
 	gulp.watch('./prod/img/**/*', ['watch-img']);
 	gulp.watch('./prod/js/**/*.js', ['watch-js']);
