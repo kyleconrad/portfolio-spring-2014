@@ -1,6 +1,6 @@
 {
   "name": "PortfolioSpring2014",
-  "version": "0.0.5",
+  "version": "3.0.1",
   "description": "Kyle Conrad's portfolio redesign for Spring 2014.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
