@@ -64,6 +64,10 @@ header {
 	}
 }
 
+.no-margin-btm {
+	margin-bottom: 0;
+}
+
 .third {
 	// @include calc(width, "(100% / 3) - 10px");
 	@include calc(width, "100% / 3");
