@@ -238,4 +238,24 @@ $(document).ready(function() {
 
 		return false;
 	});
+
+
+	// SOMETHING SOMETHING
+	var keys = [],
+		dqd = '73,68,68,81,68',
+		kfa = '73,68,75,70,65';
+	$(document).keydown(function(e){
+		keys.push( e.keyCode );
+
+		if ( keys.toString().indexOf( dqd ) >= 0 ) {
+			$(document).unbind('keydown', arguments.callee);
+
+			$('#doom').addClass('iddqd');
+		}
+		if ( keys.toString().indexOf( kfa ) >= 0 ) {
+			$(document).unbind('keydown', arguments.callee);
+
+			$('#doom').addClass('idkfa');
+		}
+	});
 });

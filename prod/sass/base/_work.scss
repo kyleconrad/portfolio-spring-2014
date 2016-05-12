@@ -101,6 +101,17 @@ $hotcars: #0076be;
 			@include background-image(linear-gradient(to bottom, rgba($doom, 0) 0%, $doom 100%));
 		}
 	}
+
+	&.iddqd {
+		.hero-image {
+			background-image: url('/img/doom/hero-dqd.jpg');
+		}
+	}
+	&.idkfa {
+		.hero-image {
+			background-image: url('/img/doom/hero-kfa.jpg');
+		}
+	}
 }
 
 
