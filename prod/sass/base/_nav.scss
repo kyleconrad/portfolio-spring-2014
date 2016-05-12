@@ -1,1 +1,56 @@
 /* NAV BAR */
+
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 60px;
+	background: $dark;
+	border-bottom: 1px solid white;
+
+	.column {
+		height: 100%;
+	}
+}
+
+.nav-link-top {
+	display: block;
+	height: 100%;
+	width: auto;
+	float: left;
+	// border-left: 1px solid rgba(white,0.5);
+	// border-right: 1px solid rgba(white,0.5);
+}
+
+.nav-link-list {
+	float: right;
+	height: 100%;
+	display: block;
+	border-right: 1px solid white;
+
+	li {
+		float: left;
+		display: table;
+		height: 100%;
+		border-left: 1px solid white;
+	}
+}
+.nav-link {
+	display: table-cell;
+	height: 100%;
+	vertical-align: middle;
+	padding: 0 2em;
+
+	&:hover,
+	&:active {
+		background: white;
+	}
+
+	&.inactive {
+		opacity: 0.5;
+		pointer-events: none;
+		cursor: default;
+	}
+}

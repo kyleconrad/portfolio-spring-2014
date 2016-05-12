@@ -35,3 +35,12 @@ img {
 #ampersand {
 	@include transform(translateX(-3px));
 }
+
+.nav-link-top {
+	img {
+		height: 100%;
+		width: auto;
+		padding: 15px;
+		padding-left: 0px;
+	}
+}

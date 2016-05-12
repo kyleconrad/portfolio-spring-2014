@@ -12,6 +12,18 @@ header {
 	width: 100%;
 }
 
+#main-header,
+.about-footer,
+#about,
+footer {
+	z-index: 999;
+}
+nav {
+	z-index: 500;
+}
+
+
+
 .column {
 	width: 80%;
 	margin: 0 auto;

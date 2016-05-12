@@ -2,6 +2,7 @@
 h1,
 h2,
 h3,
+.nav-link,
 .big-button,
 .work-detail,
 .work-person,
@@ -152,6 +153,20 @@ footer {
 	}
 }
 
+.nav-link {
+	text-decoration: none;
+	text-transform: uppercase;
+	color: white;
+	font-size: 0.75rem;
+	letter-spacing: 0.5em;
+	text-indent: 0.45em;
+
+	&:hover,
+	&:active {
+		color: $dark;
+	}
+}
+
 .big-button {
 	text-decoration: none;
 	text-transform: uppercase;
@@ -168,7 +183,8 @@ footer {
 	padding: 1.65em 1.25em;
 	text-indent: 0.3em;
 
-	&:hover {
+	&:hover,
+	&:active {
 		background: white;
 	}
 }
