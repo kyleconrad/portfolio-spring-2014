@@ -10,6 +10,8 @@ nav {
 	background: $dark;
 	border-bottom: 1px solid white;
 
+	opacity: 0.25;
+
 	.column {
 		height: 100%;
 	}
@@ -20,8 +22,6 @@ nav {
 	height: 100%;
 	width: auto;
 	float: left;
-	// border-left: 1px solid rgba(white,0.5);
-	// border-right: 1px solid rgba(white,0.5);
 }
 
 .nav-link-list {
