@@ -37,10 +37,12 @@ $(document).ready(function() {
 		prevElementPos,
 		nextElementPos;
 
+
+	// ACTIVE SECTIONS
 	$('.work-block').first().addClass('active');
 	
 	$(window).on('load', function(){
-		initialPos = $(window).scrollTop();
+		initialPos = Math.round($(window).scrollTop());
 
 		if ( loadScrollPos >= $('#about').offset().top ) {
 			$('.work-block').removeClass('active');
@@ -49,7 +51,7 @@ $(document).ready(function() {
 
 		$('.work-block').each(function(index) {
 			var thisSectionHeight = $(this).outerHeight() * 1.5,
-				thisSectionPos = $(this).offset().top;
+				thisSectionPos = Math.round($(this).offset().top);
 
 			if ( thisSectionHeight > bigSectionHeight ) {
 				bigSectionHeight = thisSectionHeight;
@@ -63,12 +65,10 @@ $(document).ready(function() {
 				thisElementPos = Math.round(thisElement.offset().top);
 
 				if ( !$('.work-block').last().hasClass('active') ) {
-					nextElement = $(this).next('.work-block'),
-					nextElementPos = Math.round(nextElement.offset().top);
+					nextElement = $(this).next('.work-block');
 				}
 				if ( !$('.work-block').first().hasClass('active') ) {
-					prevElement = $(this).prev('.work-block'),
-					prevElementPos = Math.round(prevElement.offset().top);
+					prevElement = $(this).prev('.work-block');
 				}
 			}
 		});
@@ -86,38 +86,24 @@ $(document).ready(function() {
 	});
 
 
-	// LAZY LOADING
-	$('.lazy').show();
-	// window.lazySizesConfig = window.lazySizesConfig || {};
-	// lazySizesConfig.lazyClass = 'lazy';
-	// lazySizesConfig.srcAttr = 'data-original';
-	// lazySizesConfig.loadMode = 2;
-	// lazySizesConfig.expand = (bigSectionHeight / 3);
-	// lazySizesConfig.expFactor = 3;
-
-	// $('.video-load').lazyvideoload({
-	// 	// threshold: windowHeight + (windowHeight / 4),
-	// 	threshold: bigSectionHeight,
-	// 	load: function(element){
-	// 		$('.full, .half').fitVids();
-	// 	}
-	// });
-
-
-	// RESPONSIVE VIDEOS
-	$('.full .half').fitVids();
-
-
 	// SCROLLING
 	var windowScroll,
 		currentlyScrolling = false;
 
 	$(window).on('scroll', function(){
 		windowScroll = Math.round($(window).scrollTop());
+		initialPos = windowScroll;
 
 		// DETERMINE ACTIVE ELEMENT BASED ON SCROLL POSITION
 		thisElement = $('.work-block.active');
 		thisElementPos = Math.round(thisElement.offset().top);
+
+		if ( !$('.work-block').last().hasClass('active') ) {
+			nextElement = thisElement.next('.work-block');
+		}
+		if ( !$('.work-block').first().hasClass('active') ) {
+			prevElement = thisElement.prev('.work-block');
+		}
 
 		if ( windowScroll >= thisElementPos + thisElement.outerHeight() && !$('.work-block').last().hasClass('active') ) {
 			$('.work-block').removeClass('active');
@@ -139,6 +125,52 @@ $(document).ready(function() {
 		}
 	});
 
+
+	// LAZY LOADING
+	$('.lazy').show();
+	window.lazySizesConfig = window.lazySizesConfig || {};
+	lazySizesConfig.lazyClass = 'lazy';
+	lazySizesConfig.srcAttr = 'data-original';
+	lazySizesConfig.loadMode = 2;
+	lazySizesConfig.expand = (bigSectionHeight / 3);
+	lazySizesConfig.expFactor = 3;
+	document.addEventListener('lazybeforeunveil', function(e){
+		lazyPos = Math.round($(window).scrollTop());
+
+		$('.work-block').each(function(index) {
+			var lazySectionPos = Math.round($(this).offset().top);
+
+			if ( lazyPos >= lazySectionPos && lazyPos < (lazySectionPos + $(this).outerHeight()) ) {
+				$('.work-block').removeClass('active');
+				$(this).addClass('active');
+
+				thisElement = $(this),
+				thisElementPos = Math.round(thisElement.offset().top);
+
+				if ( !$('.work-block').last().hasClass('active') ) {
+					nextElement = $(this).next('.work-block');
+				}
+				if ( !$('.work-block').first().hasClass('active') ) {
+					prevElement = $(this).prev('.work-block');
+				}
+			}
+		});
+	});
+
+	$('.video-load').lazyvideoload({
+		// threshold: windowHeight + (windowHeight / 4),
+		threshold: bigSectionHeight,
+		load: function(element){
+			$('.full, .half').fitVids();
+		}
+	});
+
+
+	// RESPONSIVE VIDEOS
+	$('.full .half').fitVids();
+
+
+	// NAV
 	$('.nav-link-top').on('click', function(){
 		if ( !currentlyScrolling ) {
 			var timing = windowScroll / 2;
