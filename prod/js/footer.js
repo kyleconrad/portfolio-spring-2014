@@ -92,7 +92,7 @@ $(document).ready(function() {
 	// lazySizesConfig.lazyClass = 'lazy';
 	// lazySizesConfig.srcAttr = 'data-original';
 	// lazySizesConfig.loadMode = 2;
-	// lazySizesConfig.expand = (bigSectionHeight / 4);
+	// lazySizesConfig.expand = (bigSectionHeight / 3);
 	// lazySizesConfig.expFactor = 3;
 
 	// $('.video-load').lazyvideoload({
@@ -109,7 +109,8 @@ $(document).ready(function() {
 
 
 	// SCROLLING
-	var windowScroll;
+	var windowScroll,
+		currentlyScrolling = false;
 
 	$(window).on('scroll', function(){
 		windowScroll = Math.round($(window).scrollTop());
@@ -139,17 +140,26 @@ $(document).ready(function() {
 	});
 
 	$('.nav-link-top').on('click', function(){
-		var timing = windowScroll / 2;
-		$('#main-header').velocity('scroll', {
-			duration: timing,
-			easing: 'swing'
-		});
+		if ( !currentlyScrolling ) {
+			var timing = windowScroll / 2;
+			$('#main-header').velocity('scroll', {
+				duration: timing,
+				easing: 'swing',
+				mobileHA: false,
+				begin: function() {
+					currentlyScrolling = true;
+				},
+				complete: function() {
+					currentlyScrolling = false;
+				}
+			});
+		}
 
 		return false;
 	});
 
 	$('.nav-previous').on('click', function(){
-		if ( !$(this).hasClass('inactive') ) {
+		if ( !$(this).hasClass('inactive') && !currentlyScrolling ) {
 			thisElement = $('.work-block.active');
 			prevElement = thisElement.prev('.work-block'),
 			prevElementPos = Math.round(prevElement.offset().top);
@@ -159,14 +169,21 @@ $(document).ready(function() {
 			$(prevElement).velocity('scroll', {
 				duration: timing,
 				easing: 'swing',
-				offset: 2
+				offset: 2,
+				mobileHA: false,
+				begin: function() {
+					currentlyScrolling = true;
+				},
+				complete: function() {
+					currentlyScrolling = false;
+				}
 			});
 		}
 
 		return false;
 	});
 	$('.nav-next').on('click', function(){
-		if ( !$(this).hasClass('inactive') ) {
+		if ( !$(this).hasClass('inactive') && !currentlyScrolling ) {
 			thisElement = $('.work-block.active');
 			nextElement = thisElement.next('.work-block'),
 			nextElementPos = Math.round(nextElement.offset().top);
@@ -176,7 +193,14 @@ $(document).ready(function() {
 			$(nextElement).velocity('scroll', {
 				duration: timing,
 				easing: 'swing',
-				offset: 2
+				offset: 2,
+				mobileHA: false,
+				begin: function() {
+					currentlyScrolling = true;
+				},
+				complete: function() {
+					currentlyScrolling = false;
+				}
 			});
 		}
 

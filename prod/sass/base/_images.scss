@@ -42,5 +42,9 @@ img {
 		width: auto;
 		padding: 15px;
 		padding-left: 0px;
+
+		@include breakpoint(mobile) {
+			padding: 10px;
+		}
 	}
 }

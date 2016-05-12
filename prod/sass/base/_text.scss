@@ -161,9 +161,11 @@ footer {
 	letter-spacing: 0.5em;
 	text-indent: 0.45em;
 
-	&:hover,
-	&:active {
-		color: $dark;
+	.desktop & {
+		&:hover,
+		&:active {
+			color: $dark;
+		}
 	}
 }
 

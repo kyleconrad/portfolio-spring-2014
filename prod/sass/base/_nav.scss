@@ -10,10 +10,24 @@ nav {
 	background: $dark;
 	border-bottom: 1px solid white;
 
-	opacity: 0.25;
+	opacity: 0.85;
 
 	.column {
 		height: 100%;
+	}
+
+	.desktop & {
+		opacity: 0.25;
+
+		@include transition(0.25s);
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	@include breakpoint(mobile) {
+		height: 50px;
 	}
 }
 
@@ -43,9 +57,11 @@ nav {
 	vertical-align: middle;
 	padding: 0 2em;
 
-	&:hover,
-	&:active {
-		background: white;
+	.desktop & {
+		&:hover,
+		&:active {
+			background: white;
+		}
 	}
 
 	&.inactive {
