@@ -129,11 +129,11 @@ $(document).ready(function() {
 	// LAZY LOADING
 	$('.lazy').show();
 	window.lazySizesConfig = window.lazySizesConfig || {};
-	lazySizesConfig.lazyClass = 'lazy';
+	window.lazySizesConfig.lazyClass = 'lazy';
 	lazySizesConfig.srcAttr = 'data-original';
 	lazySizesConfig.loadMode = 2;
 	lazySizesConfig.expand = (bigSectionHeight / 3);
-	lazySizesConfig.expFactor = 3;
+	lazySizesConfig.expFactor = 1.5;
 	document.addEventListener('lazybeforeunveil', function(e){
 		lazyPos = Math.round($(window).scrollTop());
 
