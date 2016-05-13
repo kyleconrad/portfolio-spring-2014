@@ -15,6 +15,7 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	usemin = require('gulp-usemin'),
 	inject = require('gulp-inject'),
+	replace = require('gulp-replace'),
 	imagemin = require('gulp-imagemin'),
 	gzip = require('gulp-gzip'),
 	sitemap = require('gulp-sitemap'),
@@ -116,6 +117,9 @@ gulp.task('html', ['scripts'], function() {
 				removeTags: true,
 				name: 'header'
 			}))
+			.pipe(replace('/css/', 'http://cdn.kyleconrad.com/css/'))
+			.pipe(replace('/js/', 'http://cdn.kyleconrad.com/js/'))
+			.pipe(replace('/img/', 'http://cdn.kyleconrad.com/img/'))
 			.pipe(gulp.dest('./dist')),
 	  	gulp.src("./prod/**/*.txt")
 	  		.pipe(gulp.dest('./dist'))
