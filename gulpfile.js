@@ -117,9 +117,9 @@ gulp.task('html', ['scripts'], function() {
 				removeTags: true,
 				name: 'header'
 			}))
-			.pipe(replace('/css/', 'http://cdn.kyleconrad.com/css/'))
-			.pipe(replace('/js/', 'http://cdn.kyleconrad.com/js/'))
-			.pipe(replace('/img/', 'http://cdn.kyleconrad.com/img/'))
+			.pipe(replace('/css/', '//cdn.kyleconrad.com/css/'))
+			.pipe(replace('/js/', '//cdn.kyleconrad.com/js/'))
+			.pipe(replace('/img/', '//cdn.kyleconrad.com/img/'))
 			.pipe(gulp.dest('./dist')),
 	  	gulp.src("./prod/**/*.txt")
 	  		.pipe(gulp.dest('./dist'))
@@ -160,7 +160,7 @@ gulp.task('images', function() {
 gulp.task('sitemap', ['html'], function () {
     gulp.src('./dist/**/*.html')
         .pipe(sitemap({
-            siteUrl: 'http://kyleconrad.com'
+            siteUrl: 'https://kyleconrad.com'
         }))
         .pipe(gulp.dest('./dist'));
 });
