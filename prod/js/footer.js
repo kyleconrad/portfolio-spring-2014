@@ -24,9 +24,51 @@ $(document).ready(function() {
 	}
 
 
+	// LAZY LOADING
+	// $('.lazy').show();
+	window.lazySizesConfig = window.lazySizesConfig || {};
+	// window.lazySizesConfig.lazyClass = 'lazy';
+	window.lazySizesConfig.srcAttr = 'data-original';
+	window.lazySizesConfig.loadMode = 2;
+	window.lazySizesConfig.expand = windowHeight * 2.5;
+	window.lazySizesConfig.expFactor = 3;
+	document.addEventListener('lazybeforeunveil', function(e){
+		lazyPos = Math.round($(window).scrollTop());
+
+		$('.work-block').each(function(index) {
+			var lazySectionPos = Math.round($(this).offset().top);
+
+			if ( lazyPos >= lazySectionPos && lazyPos < (lazySectionPos + $(this).outerHeight()) ) {
+				$('.work-block').removeClass('active');
+				$(this).addClass('active');
+
+				thisElement = $(this),
+				thisElementPos = Math.round(thisElement.offset().top);
+
+				if ( !$('.work-block').last().hasClass('active') ) {
+					nextElement = $(this).next('.work-block');
+				}
+				if ( !$('.work-block').first().hasClass('active') ) {
+					prevElement = $(this).prev('.work-block');
+				}
+			}
+		});
+	});
+
+	$('.video-load').lazyload({
+		threshold: windowHeight * 1.75,
+		load: function(element){
+			$('.full, .half').fitVids();
+		}
+	});
+
+
+	// RESPONSIVE VIDEOS
+	$('.full .half').fitVids();
+
+
 	// SECTION HEIGHTS FOR LAZY LOADING & ACTIVE ELEMENT ON LOAD
-	var bigSectionHeight = $('.work-block:first').outerHeight() * 1.5,
-		loadScrollPos = 0;
+	var loadScrollPos = 0;
 	var initialPos = 0,
 		scrollDown = false,
 		scrollUp = false;
@@ -50,12 +92,7 @@ $(document).ready(function() {
 		}
 
 		$('.work-block').each(function(index) {
-			var thisSectionHeight = $(this).outerHeight() * 1.5,
-				thisSectionPos = Math.round($(this).offset().top);
-
-			if ( thisSectionHeight > bigSectionHeight ) {
-				bigSectionHeight = thisSectionHeight;
-			}
+			var thisSectionPos = Math.round($(this).offset().top);
 
 			if ( initialPos >= thisSectionPos && initialPos < (thisSectionPos + $(this).outerHeight()) ) {
 				$('.work-block').removeClass('active');
@@ -124,50 +161,6 @@ $(document).ready(function() {
 			$('.nav-link').removeClass('inactive');
 		}
 	});
-
-
-	// LAZY LOADING
-	$('.lazy').show();
-	window.lazySizesConfig = window.lazySizesConfig || {};
-	window.lazySizesConfig.lazyClass = 'lazy';
-	lazySizesConfig.srcAttr = 'data-original';
-	lazySizesConfig.loadMode = 2;
-	lazySizesConfig.expand = (bigSectionHeight / 3);
-	lazySizesConfig.expFactor = 1.5;
-	document.addEventListener('lazybeforeunveil', function(e){
-		lazyPos = Math.round($(window).scrollTop());
-
-		$('.work-block').each(function(index) {
-			var lazySectionPos = Math.round($(this).offset().top);
-
-			if ( lazyPos >= lazySectionPos && lazyPos < (lazySectionPos + $(this).outerHeight()) ) {
-				$('.work-block').removeClass('active');
-				$(this).addClass('active');
-
-				thisElement = $(this),
-				thisElementPos = Math.round(thisElement.offset().top);
-
-				if ( !$('.work-block').last().hasClass('active') ) {
-					nextElement = $(this).next('.work-block');
-				}
-				if ( !$('.work-block').first().hasClass('active') ) {
-					prevElement = $(this).prev('.work-block');
-				}
-			}
-		});
-	});
-
-	$('.video-load').lazyload({
-		// threshold: windowHeight + (windowHeight / 4),
-		threshold: bigSectionHeight,
-		load: function(element){
-			$('.full, .half').fitVids();
-		}
-	});
-
-
-	// RESPONSIVE VIDEOS
-	$('.full .half').fitVids();
 
 
 	// NAV

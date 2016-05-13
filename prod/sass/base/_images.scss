@@ -10,8 +10,8 @@ img {
 		border: 1px solid rgba(black,0.15);
 	}
 
-	&.lazy {
-		display: none;
+	&.lazyload {
+		// display: none;
 		background-color: rgba(black,0.15);
 		background-image: url('../img/load.gif');
 		background-repeat: no-repeat;
