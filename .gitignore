@@ -6,3 +6,6 @@ _old
 .sass-cache
 .sass-cache/**/*
 *.scssc
+
+aws.json
+.awspublish-*

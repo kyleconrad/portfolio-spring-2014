@@ -19,7 +19,8 @@ var gulp = require('gulp'),
 	gzip = require('gulp-gzip'),
 	sitemap = require('gulp-sitemap'),
 	gutil = require('gulp-util'),
-	rsync = require('rsyncwrapper').rsync;
+	rsync = require('rsyncwrapper').rsync,
+	awspublish = require('gulp-awspublish');
 
 
 
@@ -211,7 +212,7 @@ gulp.task('build', ['remove'], function(){
 
 
 // Deployment to server
-gulp.task('deploy', function() {
+gulp.task('deploy-do', function() {
 	rsync({
 		ssh: true,
 		src: 'dist/',
@@ -223,4 +224,33 @@ gulp.task('deploy', function() {
 	}, function(error, stdout, stderr, cmd) {
 		gutil.log(stdout);
 	});
+});
+
+var awsCreds = require('./aws.json');
+gulp.task('deploy-s3', function() {
+	var publisher = awspublish.create({
+		region: awsCreds.region,
+		params: {
+			Bucket: awsCreds.bucket
+		},
+		accessKeyId: awsCreds.key,
+		secretAccessKey: awsCreds.secret
+	});
+	var headers = {
+		'Cache-Control': 'max-age=315360000, no-transform, public',
+		'x-amz-acl': 'public-read'
+	};
+
+	return gulp.src('./dist/**')
+		.pipe(publisher.publish(headers))
+		.pipe(publisher.sync())
+		.pipe(publisher.cache())
+		.pipe(awspublish.reporter());
+});
+
+gulp.task('deploy', function(){
+	return gulp.start(
+		'deploy-do',
+		'deploy-s3'
+	);
 });
