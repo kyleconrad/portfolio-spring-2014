@@ -1,5 +1,5 @@
 /*!
- * viewport-units-buggyfill v0.5.0
+ * viewport-units-buggyfill v0.6.0
  * @web: https://github.com/rodneyrehm/viewport-units-buggyfill/
  * @author: Rodney Rehm - http://rodneyrehm.de/en/
  */
@@ -20,7 +20,7 @@
   }
 }(this, function () {
   'use strict';
-  /*global document, window, navigator, location, XMLHttpRequest, XDomainRequest*/
+  /*global document, window, navigator, location, XMLHttpRequest, XDomainRequest, CustomEvent*/
 
   var initialized = false;
   var options;
@@ -30,7 +30,8 @@
   var dimensions;
   var declarations;
   var styleNode;
-  var isOldInternetExplorer = false;
+  var isBuggyIE = /MSIE [0-9]\./i.test(userAgent);
+  var isOldIE = /MSIE [0-8]\./i.test(userAgent);
   var isOperaMini = userAgent.indexOf('Opera Mini') > -1;
 
   var isMobileSafari = /(iPhone|iPod|iPad).+AppleWebKit/i.test(userAgent) && (function() {
@@ -43,7 +44,7 @@
     // * Safari iOS7: "Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A4449d Safari/9537.53"
     var iOSversion = userAgent.match(/OS (\d)/);
     // viewport units work fine in mobile Safari and webView on iOS 8+
-    return iOSversion && iOSversion.length>1 && parseInt(iOSversion[1]) < 8;
+    return iOSversion && iOSversion.length>1 && parseInt(iOSversion[1]) < 10;
   })();
 
   var isBadStockAndroid = (function() {
@@ -65,22 +66,33 @@
     return versionNumber <= 4.4;
   })();
 
-  // Do not remove the following comment!
-  // It is a conditional comment used to
-  // identify old Internet Explorer versions
-
-  /*@cc_on
-
-  @if (@_jscript_version <= 10)
-    isOldInternetExplorer = true;
-  @end
-
-  @*/
-
-  // added check for IE11, since it *still* doesn't understand vmax!!!
-  if (!isOldInternetExplorer) {
-    isOldInternetExplorer = !!navigator.userAgent.match(/Trident.*rv[ :]*11\./);
+  // added check for IE10, IE11 and Edge < 20, since it *still* doesn't understand vmax
+  // http://caniuse.com/#feat=viewport-units
+  if (!isBuggyIE) {
+    isBuggyIE = !!navigator.userAgent.match(/MSIE 10\.|Trident.*rv[ :]*1[01]\.| Edge\/1\d\./);
   }
+
+  // Polyfill for creating CustomEvents on IE9/10/11
+  // from https://github.com/krambuhl/custom-event-polyfill
+  try {
+    new CustomEvent('test');
+  } catch(e) {
+    var CustomEvent = function(event, params) {
+      var evt;
+      params = params || {
+        bubbles: false,
+        cancelable: false,
+        detail: undefined
+      };
+
+      evt = document.createEvent('CustomEvent');
+      evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+      return evt;
+    };
+    CustomEvent.prototype = window.Event.prototype;
+    window.CustomEvent = CustomEvent; // expose definition to window
+  }
+
   function debounce(func, wait) {
     var timeout;
     return function() {
@@ -119,10 +131,27 @@
     options.isMobileSafari = isMobileSafari;
     options.isBadStockAndroid = isBadStockAndroid;
 
-    if (!options.force && !isMobileSafari && !isOldInternetExplorer && !isBadStockAndroid && !isOperaMini && (!options.hacks || !options.hacks.required(options))) {
-      // this buggyfill only applies to mobile safari, IE9-10 and the Stock Android Browser.
-      return;
+    if (options.ignoreVmax && !options.force && !isOldIE) {
+      // modern IE (10 and up) do not support vmin/vmax,
+      // but chances are this unit is not even used, so
+      // allow overwriting the "hacktivation"
+      // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/56
+      isBuggyIE = false;
     }
+
+    if (isOldIE || (!options.force && !isMobileSafari && !isBuggyIE && !isBadStockAndroid && !isOperaMini && (!options.hacks || !options.hacks.required(options)))) {
+      // this buggyfill only applies to mobile safari, IE9-10 and the Stock Android Browser.
+      if (window.console && isOldIE) {
+        console.info('viewport-units-buggyfill requires a proper CSSOM and basic viewport unit support, which are not available in IE8 and below');
+      }
+
+      return {
+        init: function () {}
+      };
+    }
+
+    // fire a custom event that buggyfill was initialize
+    window.dispatchEvent(new CustomEvent('viewport-units-buggyfill-init'));
 
     options.hacks && options.hacks.initialize(options);
 
@@ -141,7 +170,7 @@
       // orientationchange might have happened while in a different window
       window.addEventListener('pageshow', _refresh, true);
 
-      if (options.force || isOldInternetExplorer || inIframe()) {
+      if (options.force || isBuggyIE || inIframe()) {
         window.addEventListener('resize', _refresh, true);
         options._listeningToResize = true;
       }
@@ -156,6 +185,8 @@
     styleNode.textContent = getReplacedViewportUnits();
     // move to the end in case inline <style>s were added dynamically
     styleNode.parentNode.appendChild(styleNode);
+    // fire a custom event that styles were updated
+    window.dispatchEvent(new CustomEvent('viewport-units-buggyfill-style'));
   }
 
   function refresh() {
@@ -171,11 +202,32 @@
       updateStyles();
     }, 1);
   }
+  
+  // http://stackoverflow.com/a/23613052
+  function processStylesheet(ss) {
+    // cssRules respects same-origin policy, as per
+    // https://code.google.com/p/chromium/issues/detail?id=49001#c10.
+    try {
+      if (!ss.cssRules) { return; }
+    } catch(e) {
+      if (e.name !== 'SecurityError') { throw e; }
+      return;
+    }
+    // ss.cssRules is available, so proceed with desired operations.
+    var rules = [];
+    for (var i = 0; i < ss.cssRules.length; i++) {
+      var rule = ss.cssRules[i];
+      rules.push(rule);
+    }
+    return rules;
+  }
 
   function findProperties() {
     declarations = [];
     forEach.call(document.styleSheets, function(sheet) {
-      if (sheet.ownerNode.id === 'patched-viewport' || !sheet.cssRules || sheet.ownerNode.getAttribute('data-viewport-units-buggyfill') === 'ignore') {
+      var cssRules = processStylesheet(sheet);
+
+      if (!cssRules || sheet.ownerNode.id === 'patched-viewport' || sheet.ownerNode.getAttribute('data-viewport-units-buggyfill') === 'ignore') {
         // skip entire sheet because no rules are present, it's supposed to be ignored or it's the target-element of the buggyfill
         return;
       }
@@ -185,7 +237,7 @@
         return;
       }
 
-      forEach.call(sheet.cssRules, findDeclarations);
+      forEach.call(cssRules, findDeclarations);
     });
 
     return declarations;
@@ -230,6 +282,11 @@
 
     forEach.call(rule.style, function(name) {
       var value = rule.style.getPropertyValue(name);
+      // preserve those !important rules
+      if (rule.style.getPropertyPriority(name)) {
+        value += ' !important';
+      }
+
       viewportUnitExpression.lastIndex = 0;
       if (viewportUnitExpression.test(value)) {
         declarations.push([rule, name, value]);
@@ -348,8 +405,8 @@
     };
 
     forEach.call(document.styleSheets, function(sheet) {
-      if (!sheet.href || origin(sheet.href) === origin(location.href)) {
-        // skip <style> and <link> from same origin
+      if (!sheet.href || origin(sheet.href) === origin(location.href) || sheet.ownerNode.getAttribute('data-viewport-units-buggyfill') === 'ignore') {
+        // skip <style> and <link> from same origin or explicitly declared to ignore
         return;
       }
 
@@ -397,7 +454,7 @@
   }
 
   return {
-    version: '0.5.0',
+    version: '0.6.0',
     findProperties: findProperties,
     getCss: getReplacedViewportUnits,
     init: initialize,

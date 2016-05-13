@@ -157,7 +157,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('.video-load').lazyvideoload({
+	$('.video-load').lazyload({
 		// threshold: windowHeight + (windowHeight / 4),
 		threshold: bigSectionHeight,
 		load: function(element){
