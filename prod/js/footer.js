@@ -30,7 +30,7 @@ $(document).ready(function() {
 	// window.lazySizesConfig.lazyClass = 'lazy';
 	window.lazySizesConfig.srcAttr = 'data-original';
 	window.lazySizesConfig.loadMode = 2;
-	window.lazySizesConfig.expand = windowHeight * 2.5;
+	window.lazySizesConfig.expand = windowHeight * 3.5;
 	window.lazySizesConfig.expFactor = 3;
 	document.addEventListener('lazybeforeunveil', function(e){
 		lazyPos = Math.round($(window).scrollTop());
