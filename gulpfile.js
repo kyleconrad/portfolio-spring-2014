@@ -94,9 +94,14 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('gzip', ['scripts'], function() {
-	return gulp.src('./dist/js/*.js')
-		.pipe(gzip())
-        .pipe(gulp.dest('./dist/js'));
+	return es.merge(
+		gulp.src('./dist/js/*.js')
+			.pipe(gzip())
+	        .pipe(gulp.dest('./dist/js')),
+	    gulp.src('./dist/css/*.css')
+	    	.pipe(gzip())
+	    	.pipe(gulp.dest('./dist/css'))
+	   );
 });
 
 gulp.task('html', ['scripts'], function() {
