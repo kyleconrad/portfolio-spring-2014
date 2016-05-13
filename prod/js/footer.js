@@ -56,7 +56,7 @@ $(document).ready(function() {
 	});
 
 	$('.video-load').lazyload({
-		threshold: windowHeight * 1.75,
+		threshold: windowHeight * 2.25,
 		load: function(element){
 			$('.full, .half').fitVids();
 		}
