@@ -16,6 +16,8 @@ var gulp = require('gulp'),
 	usemin = require('gulp-usemin'),
 	inject = require('gulp-inject'),
 	imagemin = require('gulp-imagemin'),
+	gzip = require('gulp-gzip'),
+	sitemap = require('gulp-sitemap'),
 	gutil = require('gulp-util'),
 	rsync = require('rsyncwrapper').rsync;
 
@@ -91,6 +93,12 @@ gulp.task('scripts', function() {
   	);
 });
 
+gulp.task('gzip', ['scripts'], function() {
+	return gulp.src('./dist/js/*.js')
+		.pipe(gzip())
+        .pipe(gulp.dest('./dist/js'));
+});
+
 gulp.task('html', ['scripts'], function() {
 	return es.merge(
 		gulp.src('./prod/*.html')
@@ -139,6 +147,14 @@ gulp.task('images', function() {
 	);
 });
 
+gulp.task('sitemap', ['html'], function () {
+    gulp.src('./dist/**/*.html')
+        .pipe(sitemap({
+            siteUrl: 'http://kyleconrad.com'
+        }))
+        .pipe(gulp.dest('./dist'));
+});
+
 
 // Watching files for changes before reloading
 gulp.task('watch-img', function() {
@@ -179,8 +195,10 @@ gulp.task('default', ['serve', 'html-base', 'sass'], function(){
 gulp.task('build', ['remove'], function(){
 	return gulp.start(
 		'minify',
+		'gzip',
 		'html',
-		'images'
+		'images',
+		'sitemap'
 	);
 });
 
