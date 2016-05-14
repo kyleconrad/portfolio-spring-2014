@@ -45,6 +45,7 @@ img {
 
 		@include breakpoint(mobile) {
 			padding: 10px;
+			padding-left: 0;
 		}
 	}
 }
