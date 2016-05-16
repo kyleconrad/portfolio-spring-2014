@@ -18,6 +18,8 @@ var gulp = require('gulp'),
 	replace = require('gulp-replace'),
 	imagemin = require('gulp-imagemin'),
 	gzip = require('gulp-gzip'),
+	rev = require('gulp-rev'),
+	revReplace = require('gulp-rev-replace'),
 	sitemap = require('gulp-sitemap'),
 	gutil = require('gulp-util'),
 	rsync = require('rsyncwrapper').rsync,
@@ -78,20 +80,43 @@ gulp.task('minify', ['sass'], function() {
 		.pipe(cleanCSS({
 			compatibility: '*'
 		}))
-		.pipe(gulp.dest('./dist/css'));
+		.pipe(rev())
+		.pipe(gulp.dest('./dist/css'))
+		.pipe(rev.manifest('./dist/rev-manifest.json', {
+			base: './dist',
+			merge: true
+		}))
+      	.pipe(gulp.dest('./dist'));
 });
 
 gulp.task('scripts', function() {
 	return es.merge(
 	  	gulp.src('./prod/js/*.js')
 	      	.pipe(uglify())
-	      	.pipe(gulp.dest('./dist/js')),
+	      	.pipe(gulp.dest('./dist/js'))
+	      	.pipe(rev())
+	      	.pipe(gulp.dest('./dist/js'))
+	      	.pipe(rev.manifest('./dist/rev-manifest.json', {
+				base: './dist',
+				merge: true
+			}))
+	      	.pipe(gulp.dest('./dist')),
 		gulp.src('./prod/js/lib/*.js')
-			.pipe(concat('header.js'))
+			.pipe(concat({
+				path: 'header.js',
+				cwd: ''
+			}))
 			.pipe(uglify({
 	      		mangle: false
 	      	}))
-			.pipe(gulp.dest('./dist/js'))
+	      	.pipe(gulp.dest('./dist/js'))
+	      	.pipe(rev())
+	      	.pipe(gulp.dest('./dist/js'))
+	      	.pipe(rev.manifest('./dist/rev-manifest.json', {
+				base: './dist/',
+				merge: true
+			}))
+			.pipe(gulp.dest('./dist'))
   	);
 });
 
@@ -103,10 +128,12 @@ gulp.task('gzip', ['scripts'], function() {
 	    gulp.src('./dist/css/*.css')
 	    	.pipe(gzip())
 	    	.pipe(gulp.dest('./dist/css'))
-	   );
+   );
 });
 
 gulp.task('html', ['scripts'], function() {
+	var manifest = gulp.src('./dist/rev-manifest.json');
+
 	return es.merge(
 		gulp.src('./prod/*.html')
 			.pipe(usemin())
@@ -120,6 +147,7 @@ gulp.task('html', ['scripts'], function() {
 			.pipe(replace('/css/', '//cdn.kyleconrad.com/css/'))
 			.pipe(replace('/js/', '//cdn.kyleconrad.com/js/'))
 			.pipe(replace('/img/', '//cdn.kyleconrad.com/img/'))
+			.pipe(revReplace({ manifest: manifest }))
 			.pipe(gulp.dest('./dist')),
 	  	gulp.src("./prod/**/*.txt")
 	  		.pipe(gulp.dest('./dist'))
