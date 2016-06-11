@@ -80,6 +80,7 @@ gulp.task('minify', ['sass'], function() {
 		.pipe(cleanCSS({
 			compatibility: '*'
 		}))
+		.pipe(gulp.dest('./dist/css'))
 		.pipe(rev())
 		.pipe(gulp.dest('./dist/css'))
 		.pipe(rev.manifest('./dist/rev-manifest.json', {
