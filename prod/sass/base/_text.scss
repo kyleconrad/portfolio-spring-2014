@@ -1,4 +1,15 @@
 /* TEXT SETTINGS */
+* {
+	-moz-font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "calt" 1;
+	-ms-font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "alt" 1;
+	-webkit-font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "calt" 1;
+	font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "calt" 1;
+    -webkit-font-kerning: normal;
+	-moz-font-kerning: normal;
+    font-kerning: normal;
+	font-variant-ligatures: common-ligatures contextual;
+}
+
 h1,
 h2,
 h3,
@@ -12,13 +23,7 @@ h3,
 	font-weight: 700;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-
     text-rendering: optimizeLegibility;
-    -webkit-font-feature-settings: "kern";
-    -moz-font-feature-settings: "kern";
-    -moz-font-feature-settings: "kern=1";
-    font-feature-settings: "kern" 1;
-    font-kerning: normal;
 }
 
 h1 {
