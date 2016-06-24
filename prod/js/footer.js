@@ -24,6 +24,13 @@ $(document).ready(function() {
 	}
 
 
+	// FLOWTYPE
+	$('p').flowtype({
+		minimum : 700,
+		maximum : 1800
+	});
+
+
 	// LAZY LOADING
 	// $('.lazy').show();
 	window.lazySizesConfig = window.lazySizesConfig || {};
