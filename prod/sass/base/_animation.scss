@@ -31,3 +31,28 @@
 		@include transform(translate3d(0,0,0));
 	}
 }
+
+
+.title-stranger {
+	@include filter(drop-shadow(0px 0px 10px $stranger-red) drop-shadow(0px 0px 15px rgba($stranger-red,0.25)));
+	@include animation(stranger-glow 7s ease);
+	@include animation-iteration-count(infinite);
+}
+
+@include keyframes(stranger-glow) {
+	0% {
+		@include filter(drop-shadow(0px 0px 10px $stranger-red) drop-shadow(0px 0px 15px rgba($stranger-red,0.25)));
+	}
+	25% {
+		@include filter(drop-shadow(0px 0px 10px $stranger-red) drop-shadow(0px 0px 25px rgba($stranger-red,0.65)));
+	}
+	50% {
+		@include filter(drop-shadow(0px 0px 10px $stranger-red) drop-shadow(0px 0px 15px rgba($stranger-red,0.5)));
+	}
+	75% {
+		@include filter(drop-shadow(0px 0px 10px $stranger-red) drop-shadow(0px 0px 20px rgba($stranger-red,0.35)));
+	}
+	100% {
+		@include filter(drop-shadow(0px 0px 10px $stranger-red) drop-shadow(0px 0px 15px rgba($stranger-red,0.25)));
+	}
+}

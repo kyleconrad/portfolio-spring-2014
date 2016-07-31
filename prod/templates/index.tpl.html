@@ -1,166 +1,18 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage" lang="en">
+@@include('includes/head.tpl.html')
+@@include('includes/nav.tpl.html')
+@@include('includes/hero_stranger.tpl.html')
 
-<head>
-    <!-- All coding, design, ideas, fantastical inventions, etc. etc. © 2016 Kyle Conrad -->
-    <!-- Contact: kyle@kyleconrad.com / @kyle_conrad -->
+@@include('work/doom.tpl.html')
+@@include('work/starwars.tpl.html')
+@@include('work/nclud.tpl.html')
+@@include('work/nbcsports.tpl.html')
+@@include('work/worldofx.tpl.html')
+@@include('work/thisweeksplaylist.tpl.html')
+@@include('work/tesla.tpl.html')
+@@include('work/giffffr.tpl.html')
+@@include('work/mfs.tpl.html')
+@@include('work/hotcars.tpl.html')
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui" />
-    <meta name="viewport" id="vp" content="initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimal-ui" media="(device-height: 568px)" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta http-equiv="cleartype" content="on">
+@@include('includes/about.tpl.html')
+@@include('includes/footer.tpl.html')
 
-    <meta name="format-detection" content="telephone=no">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes" >
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Kyle Conrad">
-
-    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" href="/iphoneLowRes.jpg" />
-    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" href="/iphoneRetina.jpg" />
-    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="/iphone5Retina.jpg" />
-    <link rel="apple-touch-startup-image" media="(device-width: 375px)" href="/iphone6.jpg" />
-    <link rel="apple-touch-startup-image" media="(device-width: 414px)" href="/iphone6Plus.jpg" />
-
-    <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" href="/ipadLandscape.jpg" />
-    <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" href="/ipadPortrait.jpg" />
-    <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" href="/ipadLandscapeRetina.jpg" />
-    <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" href="/ipadPortraitRetina.jpg" />
-
-    <title>Kyle Conrad. Design &amp; Code.</title>
-    <meta name="description" content="My name is Kyle Conrad. I design and code and make awesome things. I'm the senior interactive designer for nclud, a creative agency. This is some cool stuff I've worked on.">
-    <meta name="robots" content="NOODP">
-
-    <link rel="canonical" href="https://kyleconrad.com/">
-    <meta name="url" content="https://kyleconrad.com/">
-    <meta name="identifier-URL" content="https://kyleconrad.com/">
-    <link rel="author" href="humans.txt" />
-
-    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-180.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-72.png">
-    <link rel="apple-touch-icon-precomposed" href="/android-152.png">
-
-    <link rel="icon" href="/fav32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/fav48.png" sizes="48x48" type="image/png">
-    <link rel="icon" href="/fav64.png" sizes="64x64" type="image/png">
-    <link rel="icon" href="/fav128.png" sizes="128x128" type="image/png">
-    <link rel="icon" href="/fav195.png" sizes="195x195" type="image/png">
-
-    <link rel="icon" href="/fav32.png">
-
-    <meta name="theme-color" content="#1a1a1a">
-    <meta name="msapplication-TileColor" content="#1a1a1a">
-    <meta name="msapplication-TileImage" content="/fav144.png">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@kyle_conrad">
-    <meta name="twitter:title" content="Kyle Conrad. Design &amp; Code.">
-    <meta name="twitter:description" content="My name is Kyle Conrad. I design and code and make awesome things. I'm the senior interactive designer for nclud, a creative agency. This is some cool stuff I've worked on.">
-    <meta name="twitter:image:src" content="http://kyleconrad.com/social2016.jpg">
-
-    <meta itemprop="name" content="Kyle Conrad. Design &amp; Code." />
-    <meta itemprop="description" content="My name is Kyle Conrad. I design and code and make awesome things. I'm the senior interactive designer for nclud, a creative agency. This is some cool stuff I've worked on." />
-    <meta itemprop="image" content="http://kyleconrad.com/social2016.jpg" />
-
-    <meta property="og:title" content="Kyle Conrad. Design &amp; Code." />
-    <meta property="og:url" content="http://kyleconrad.com/"/>
-    <meta property="og:site_name" content="Kyle Conrad. Design &amp; Code." />
-    <meta property="og:description" content="My name is Kyle Conrad. I design and code and make awesome things. I'm the senior interactive designer for nclud, a creative agency. This is some cool stuff I've worked on." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="http://kyleconrad.com/social2016.jpg" />
-
-    <link href="/css/style.css" rel="stylesheet" type="text/css" />
-
-	<script src="https://use.typekit.net/det2ovz.js"></script>
-	<script>try{Typekit.load({ async: true });}catch(e){}</script>
-
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script type="text/javascript" src="//cdn.polyfill.io/v1/polyfill.min.js"></script>
-    <!-- build:remove -->
-    <script type="text/javascript" src="/js/lib/01_fitvids.js"></script>
-    <script type="text/javascript" src="/js/lib/02_lazysizes.js"></script>
-    <script type="text/javascript" src="/js/lib/03_lazyvideo.js"></script>
-    <script type="text/javascript" src="/js/lib/04_viewport.js"></script>
-    <script type="text/javascript" src="/js/lib/05_velocity.js"></script>
-    <script type="text/javascript" src="/js/lib/06_flowtype.js"></script>
-    <!-- endbuild -->
-    <!-- header:js --><!-- endinject -->
-</head>
-
-<body>
-
-<nav>
-	<div class="column clearfix">
-	<a href="#" class="nav-link-top"><img src="/img/logo-nav.svg" alt="Kyle Conrad. Design &amp; Code"></a>
-
-	<ul class="nav-link-list">
-		<li><a href="#" class="nav-link nav-previous">Previous</a></li>
-		<li><a href="#" class="nav-link nav-next">Next</a></li>
-	</ul>
-	</div>
-</nav>
-
-<header id="main-header">
-	<object data="/img/header.svg" type="image/svg+xml" class="hero">
-    	<embed src="/img/header.svg" type="image/svg+xml" class="hero" />
-	</object>
-</header>
-
-@@include('doom.tpl.html')
-@@include('starwars.tpl.html')
-@@include('nclud.tpl.html')
-@@include('nbcsports.tpl.html')
-@@include('worldofx.tpl.html')
-@@include('thisweeksplaylist.tpl.html')
-@@include('tesla.tpl.html')
-@@include('giffffr.tpl.html')
-@@include('mfs.tpl.html')
-@@include('hotcars.tpl.html')
-
-<section class="about-footer">
-	<article id="about">
-	    <div class="column">
-	        <p>My name&rsquo;s Kyle. I&rsquo;m a designer and coder. I&rsquo;m sarcastic. I sing in the car. I love Chuck Taylors and Wayfarers. I&rsquo;m a font nerd. I organize my closet by color. I was born on a Friday. I&rsquo;ve been to the emergency room in every place I&rsquo;ve ever lived.</p>
-
-	        <p>I&rsquo;m the senior interactive designer for <a href="https://nclud.com/" target="_blank">nclud</a> in Washington, DC (but I live in Richmond, Virginia). You should check us out &mdash; we&rsquo;re nice people and we do great work.</p>
-
-	        <p>I write about design, code, technology, advertising, and creativity on <a href="https://medium.com/@kyle_conrad" target="_blank">Medium</a>. I post weekly music &mdash; both new and old &mdash; on <a href="http://thisweeksplaylist.co/" target="_blank">This Week's Playlist</a>.</p>
-	        
-	        <p>Other than that, I post random thoughts on <a href="https://www.twitter.com/kyle_conrad" target="_blank">Twitter</a>, random things on <a href="http://blog.kyleconrad.com" target="_blank">Tumblr</a>, photos on <a href="http://instagram.com/kyle_conrad" target="_blank">Instagram</a>, code and projects on <a href="https://github.com/kyleconrad" target="_blank">Github</a>, and designs in progress on <a href="https://dribbble.com/kyle_conrad" target="_blank">Dribbble</a>.</p>
-
-	        <p>Do you have an awesome project that needs design or code? I&rsquo;m available for limited freelance work, so <a href="mailto:kyle@kyleconrad.com" target="_blank">email me</a>.</p>
-
-	        <hr>
-
-	        <h3>Additional Clientele</h3>
-	        <span class="client-list">African Wildlife Foundation, AOL, Audi Financial Services, Clyde's Restaurant Group, Comcast, Doubletree by Hilton, jQuery Foundation, Neustar, RAINN, Renaissance Hotels by Marriott, Volkswagen Financial Services, Sweetgreen, US Department of State</span>
-	    </div>
-	</article>
-
-	<footer class="column">
-	    <hr>
-	    <ul>
-	        <li><a href="mailto:kyle@kyleconrad.com">Email</a></li>
-	        <li><a href="https://www.twitter.com/kyle_conrad" target="_blank">Twitter</a></li>
-	        <li><a href="https://github.com/kyleconrad" target="_blank">Github</a></li>
-	        <li><a href="https://medium.com/@kyle_conrad" target="_blank">Medium</a></li>
-	    </ul>
-
-	    <span id="dmx"></span>
-	</footer>
-</section>
-
-<script type="text/javascript" src="/js/footer.js"></script>
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-25023620-1', 'kyleconrad.com');
-    ga('send', 'pageview');
-</script>
-
-</body>
-</html>

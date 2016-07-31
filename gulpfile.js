@@ -43,7 +43,7 @@ gulp.task('html-base', function() {
 	return gulp.src('./prod/templates/index.tpl.html')
 		.pipe(fileinclude({
 			prefix: '@@',
-			basepath: './prod/templates/work/'
+			basepath: './prod/templates/'
 		}))
 		.pipe(rename({
  			extname: ''

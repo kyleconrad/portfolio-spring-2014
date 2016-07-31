@@ -66,3 +66,61 @@
 		height: 36rem;
 	}
 }
+
+
+
+
+
+
+$stranger-red: #e52a26;
+
+#hero-stranger {
+	height: 98vh;
+	background: url('/img/upside-down.jpg') no-repeat, black;
+	background-size: cover;
+	background-position: center center;
+
+	border-bottom: 1px solid rgba(black, 0.15);
+
+	&:after {
+		position: absolute;
+		display: block;
+
+		top: 7.5%;
+		left: 50%;
+		width: 4.5rem;
+		height: calc(4.5rem - 1px);
+		background: black;
+
+		z-index: 1;
+
+		@include transform(translate(-50%,-50%));
+
+		content: '';
+	}
+}
+.logo-stranger {
+	position: absolute;
+	top: 7.5%;
+	left: 50%;
+	@include transform(translate(-50%,-50%));
+	width: 3rem;
+	z-index: 2;
+}
+.title-stranger {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	@include transform(translate3d(-50%,-50%,0));
+	width: 30rem;
+	max-width: 85%;
+}
+.credits-stranger {
+	position: absolute;
+	bottom: 6%;
+	left: 50%;
+	@include transform(translate(-50%,-50%));
+	width: 10rem;
+	z-index: 2;
+	max-width: 65%;
+}
